@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Coder-BookStore_PRN212-Project\\Coder-BookStore\\Coder-BookStore\\DataLayer\\DataLayer.csproj": {}
+    "D:\\Coder-BookStore_PRN212-Project\\Coder-BookStore\\DataLayer\\DataLayer.csproj": {}
   },
   "projects": {
-    "D:\\Coder-BookStore_PRN212-Project\\Coder-BookStore\\Coder-BookStore\\DataLayer\\DataLayer.csproj": {
+    "D:\\Coder-BookStore_PRN212-Project\\Coder-BookStore\\DataLayer\\DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Coder-BookStore_PRN212-Project\\Coder-BookStore\\Coder-BookStore\\DataLayer\\DataLayer.csproj",
+        "projectUniqueName": "D:\\Coder-BookStore_PRN212-Project\\Coder-BookStore\\DataLayer\\DataLayer.csproj",
         "projectName": "DataLayer",
-        "projectPath": "D:\\Coder-BookStore_PRN212-Project\\Coder-BookStore\\Coder-BookStore\\DataLayer\\DataLayer.csproj",
+        "projectPath": "D:\\Coder-BookStore_PRN212-Project\\Coder-BookStore\\DataLayer\\DataLayer.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "D:\\Coder-BookStore_PRN212-Project\\Coder-BookStore\\Coder-BookStore\\DataLayer\\obj\\",
+        "outputPath": "D:\\Coder-BookStore_PRN212-Project\\Coder-BookStore\\DataLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
