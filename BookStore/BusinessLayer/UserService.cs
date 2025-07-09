@@ -89,7 +89,8 @@ namespace BusinessLayer.Services
 
         public async Task<User?> GetUserByIdAsync(int id)
         {
-            return await _userRepository.GetByIdAsync(id);
+            // Truyền includeProperties để lấy luôn thông tin RoleNavigation
+            return await _userRepository.GetByIdAsync(id, "RoleNavigation");
         }
 
         public async Task<User?> GetUserByUsernameAsync(string username)
