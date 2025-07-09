@@ -1,0 +1,55 @@
+<UserControl x:Class="PresentationLayer.Views.DashboardView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Height="Auto" Width="Auto">
+    <Grid Background="{StaticResource CardBrush}">
+        <StackPanel HorizontalAlignment="Center" Margin="0,32,0,0" Width="1100">
+            <!-- Panel cho Admin -->
+            <StackPanel x:Name="AdminStatsPanel" Visibility="Collapsed">
+                <!-- Banner -->
+                <Border Background="{StaticResource CardBrush}" CornerRadius="12" Padding="32" Margin="0,0,0,32" Effect="{StaticResource CosmoShadow}">
+                    <TextBlock Text="Dashboard quản lý BookStore" Style="{StaticResource PageTitle}" HorizontalAlignment="Center"/>
+                </Border>
+                <!-- Card thống kê -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <!-- Doanh thu -->
+                    <Border Background="{StaticResource CardBrush}" CornerRadius="12" Width="220" Height="140" Effect="{StaticResource CosmoShadow}" Margin="0,0,24,0">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="💵" FontSize="36" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                            <TextBlock Text="{Binding TotalRevenue, StringFormat={}{0:N0} ₫}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource AccentBrush}" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                            <TextBlock Text="Doanh thu" FontSize="14" Foreground="{StaticResource AccentBrush}" HorizontalAlignment="Center" Margin="0,4,0,0" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+                    <!-- Sách -->
+                    <Border Background="{StaticResource CardBrush}" CornerRadius="12" Width="220" Height="140" Effect="{StaticResource CosmoShadow}" Margin="0,0,24,0">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="📚" FontSize="36" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                            <TextBlock Text="{Binding TotalBooks}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                            <TextBlock Text="Sách" FontSize="14" Foreground="{StaticResource ForegroundBrush}" HorizontalAlignment="Center" Margin="0,4,0,0" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+                    <!-- Đơn hàng -->
+                    <Border Background="{StaticResource CardBrush}" CornerRadius="12" Width="220" Height="140" Effect="{StaticResource CosmoShadow}" Margin="0,0,24,0">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="🧾" FontSize="36" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                            <TextBlock Text="{Binding TotalOrders}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                            <TextBlock Text="Đơn hàng" FontSize="14" Foreground="{StaticResource ForegroundBrush}" HorizontalAlignment="Center" Margin="0,4,0,0" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+                    <!-- Người dùng -->
+                    <Border Background="{StaticResource CardBrush}" CornerRadius="12" Width="220" Height="140" Effect="{StaticResource CosmoShadow}">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="👤" FontSize="36" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                            <TextBlock Text="{Binding TotalUsers}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                            <TextBlock Text="Người dùng" FontSize="14" Foreground="{StaticResource ForegroundBrush}" HorizontalAlignment="Center" Margin="0,4,0,0" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+            <!-- Panel cho user không phải Admin -->
+            <StackPanel x:Name="NoPermissionPanel" Visibility="Collapsed">
+                <TextBlock Text="Bạn không có quyền truy cập trang này." Foreground="Red" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" Margin="0,24"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl> 
