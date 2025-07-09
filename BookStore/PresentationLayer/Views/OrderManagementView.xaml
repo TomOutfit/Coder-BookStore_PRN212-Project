@@ -1,0 +1,55 @@
+<UserControl x:Class="PresentationLayer.Views.OrderManagementView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="600" d:DesignWidth="1000">
+    <Border Effect="{StaticResource CosmoShadow}" Background="{StaticResource CardBrush}" CornerRadius="10" Padding="16" Margin="16">
+        <StackPanel>
+            <TextBlock Text="Danh sách đơn hàng" Style="{StaticResource PageTitle}" Margin="0,0,0,16" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,8">
+                <Button Style="{StaticResource CosmoButton}" Content="Thêm đơn hàng" Command="{Binding AddOrderCommand}" Margin="0,0,8,0"/>
+                <Button Style="{StaticResource CosmoButton}" Content="Làm mới" Command="{Binding RefreshCommand}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8" VerticalAlignment="Center">
+                <TextBlock Text="Số đơn/trang:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <ComboBox Style="{StaticResource ModernComboBox}" Width="60" ItemsSource="{Binding PageSizeOptions}" SelectedItem="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,16,0"/>
+                <Button Style="{StaticResource CosmoButton}" Content="⏮" Command="{Binding FirstPageCommand}" IsEnabled="{Binding CanGoPrevious}" Margin="0,0,4,0"/>
+                <Button Style="{StaticResource CosmoButton}" Content="&lt;" Command="{Binding PrevPageCommand}" IsEnabled="{Binding CanGoPrevious}" Margin="0,0,8,0"/>
+                <TextBlock Text="{Binding CurrentPage}" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Text=" / " VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding TotalPages}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <Button Style="{StaticResource CosmoButton}" Content="&gt;" Command="{Binding NextPageCommand}" IsEnabled="{Binding CanGoNext}" Margin="0,0,4,0"/>
+                <Button Style="{StaticResource CosmoButton}" Content="⏭" Command="{Binding LastPageCommand}" IsEnabled="{Binding CanGoNext}" Margin="0,0,16,0"/>
+                <TextBlock Text="Đến trang:" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <TextBox Width="40" Text="{Binding GoToPageText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,4,0"/>
+                <Button Style="{StaticResource CosmoButton}" Content="Đi" Command="{Binding GoToPageCommand}"/>
+            </StackPanel>
+            <DataGrid Style="{StaticResource ModernDataGrid}"
+                      ItemsSource="{Binding OrdersDisplay}"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      Margin="0,0,0,16">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã đơn" Binding="{Binding OrderId}" Width="80"/>
+                    <DataGridTextColumn Header="Khách hàng" Binding="{Binding CustomerName}" Width="*"/>
+                    <DataGridTextColumn Header="Ngày đặt" Binding="{Binding OrderDate, StringFormat={}{0:dd/MM/yyyy}}" Width="120"/>
+                    <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TotalAmount, StringFormat={}{0:N0} ₫}" Width="120"/>
+                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="100"/>
+                    <DataGridTemplateColumn Header="Hành động" Width="160">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource TableActionButton}" Content="🔍" ToolTip="Chi tiết" Command="{Binding DataContext.ViewOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="0,0,8,0"/>
+                                    <Button Style="{StaticResource TableActionButton}" Content="🗑" ToolTip="Xóa" Command="{Binding DataContext.DeleteOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <!-- Paging control nếu cần -->
+        </StackPanel>
+    </Border>
+</UserControl> 
