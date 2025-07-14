@@ -136,16 +136,17 @@ namespace BusinessLayer.Services
             var existingUser = await _userRepository.GetByIdAsync(user.Id, "Orders")
                 ?? throw new KeyNotFoundException($"User with ID {user.Id} not found.");
 
-            var userWithSameUsername = await _userRepository.GetUserByUsernameAsync(user.Username);
-            if (userWithSameUsername != null && userWithSameUsername.Id != user.Id)
-                throw new InvalidOperationException($"Username {user.Username} already exists for another user.");
+            // Bỏ kiểm tra trùng username/email/role
+            // var userWithSameUsername = await _userRepository.GetUserByUsernameAsync(user.Username);
+            // if (userWithSameUsername != null && userWithSameUsername.Id != user.Id)
+            //     throw new InvalidOperationException($"Username {user.Username} already exists for another user.");
 
-            var userWithSameEmail = await _userRepository.GetUserByEmailAsync(user.Email);
-            if (userWithSameEmail != null && userWithSameEmail.Id != user.Id)
-                throw new InvalidOperationException($"Email {user.Email} already exists for another user.");
+            // var userWithSameEmail = await _userRepository.GetUserByEmailAsync(user.Email);
+            // if (userWithSameEmail != null && userWithSameEmail.Id != user.Id)
+            //     throw new InvalidOperationException($"Email {user.Email} already exists for another user.");
 
-            var role = await _roleRepository.GetRoleByNameAsync(user.Role)
-                ?? throw new InvalidOperationException($"Role {user.Role} does not exist.");
+            // var role = await _roleRepository.GetRoleByNameAsync(user.Role)
+            //     ?? throw new InvalidOperationException($"Role {user.Role} does not exist.");
 
             existingUser.Username = user.Username;
             existingUser.Email = user.Email;

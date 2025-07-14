@@ -6,9 +6,41 @@
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="900">
     <Border CornerRadius="16" Background="{StaticResource CardBrush}" Padding="48" Margin="48" Effect="{StaticResource CosmoShadow}">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Chào mừng đến với BookStore!" FontSize="32" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}" Margin="0,0,0,24" HorizontalAlignment="Center"/>
-            <TextBlock Text="Quản lý sách, đơn hàng, người dùng và nhiều hơn nữa với giao diện hiện đại." FontSize="18" Foreground="{StaticResource ForegroundBrush}" Margin="0,0,0,32" HorizontalAlignment="Center"/>
-            <Button Style="{StaticResource CosmoButton}" Content="Bắt đầu" Command="{Binding StartCommand}" Width="180" Height="48" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12">
+                <TextBlock Text="📚" FontSize="40" Margin="0,0,12,0"/>
+                <TextBlock Text="Chào mừng đến với BookStore!" FontSize="32" FontWeight="Bold" Margin="0">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#06B6D4" Offset="0"/>
+                            <GradientStop Color="#4F46E5" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </StackPanel>
+            <TextBlock Text="Quản lý sách, đơn hàng, người dùng và nhiều hơn nữa với giao diện hiện đại."
+                       FontSize="18"
+                       Foreground="#4F46E5"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,32"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="🚀 Hãy khám phá các tính năng quản lý tuyệt vời dành cho bạn!"
+                       FontSize="16"
+                       Foreground="#06B6D4"
+                       FontStyle="Italic"
+                       Margin="0,0,0,32"
+                       HorizontalAlignment="Center"/>
+            <Button Width="200" Height="54" HorizontalAlignment="Center" Command="{Binding StartCommand}">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#06B6D4" Offset="0"/>
+                        <GradientStop Color="#4F46E5" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="🚀" FontSize="20" Margin="0,0,8,0"/>
+                    <TextBlock Text="Bắt đầu" FontSize="18" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
     </Border>
 </UserControl> 

@@ -21,5 +21,16 @@ namespace DataLayer
             using var context = _contextFactory.CreateDbContext();
             return await context.Books.AsNoTracking().FirstOrDefaultAsync(b => b.ISBN == isbn);
         }
+
+        public async Task<int> CountBooksByUserAsync(int userId)
+        {
+            using var context = _contextFactory.CreateDbContext();
+            // Count distinct books purchased by the user
+            return await context.OrderDetails
+                .Where(od => od.Order != null && od.Order.UserId == userId)
+                .Select(od => od.BookId)
+                .Distinct()
+                .CountAsync();
+        }
     }
 } 

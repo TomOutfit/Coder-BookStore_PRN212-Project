@@ -4,6 +4,10 @@ using BusinessLayer.Services;
 using System.Windows;
 using System.Windows.Input;
 using PresentationLayer.Commands;
+using Entities;
+using System.Windows.Threading;
+using System;
+using System.Threading.Tasks;
 
 namespace PresentationLayer.ViewModels
 {
@@ -19,11 +23,24 @@ namespace PresentationLayer.ViewModels
         public decimal TotalRevenue { get; set; }
         public int TotalCategories { get; set; }
         public event PropertyChangedEventHandler? PropertyChanged;
-        public ICommand GoToBooksCommand { get; }
-        public ICommand GoToUsersCommand { get; }
-        public ICommand GoToOrdersCommand { get; }
-        public ICommand GoToCategoriesCommand { get; }
+        private User? CurrentUser => (System.Windows.Application.Current as PresentationLayer.App)?.CurrentUser;
+        public bool IsAdmin => CurrentUser?.Role == "Admin";
+        public bool IsStaff => CurrentUser?.Role == "Staff";
+        public bool IsCustomer => CurrentUser?.Role == "Customer";
+        public bool IsAdminOrStaff => IsAdmin || IsStaff;
+        public bool IsStaffOrCustomer => IsStaff || IsCustomer;
+
+        public int BookCount { get; set; }
+        public int OrderCount { get; set; }
+        public int MyOrderCount { get; set; }
+        public int MyBookCount { get; set; }
+
+        public ICommand GoToBooksCommand { get; set; }
+        public ICommand GoToOrdersCommand { get; set; }
+        public ICommand GoToMyOrdersCommand { get; set; }
+        public ICommand GoToProfileCommand { get; set; }
         public event Action<string>? RequestNavigate;
+        private DispatcherTimer _timer;
         public DashboardViewModel(ICategoryService categoryService, IBookService bookService, IUserService userService, IOrderService orderService)
         {
             _categoryService = categoryService;
@@ -34,24 +51,34 @@ namespace PresentationLayer.ViewModels
             DashboardStatsChanged += (s, e) => ReloadStats();
 
             GoToBooksCommand = new BookWiseRelayCommand(_ => GoToBooks());
-            GoToUsersCommand = new BookWiseRelayCommand(_ => GoToUsers());
             GoToOrdersCommand = new BookWiseRelayCommand(_ => GoToOrders());
-            GoToCategoriesCommand = new BookWiseRelayCommand(_ => GoToCategories());
+            GoToMyOrdersCommand = new BookWiseRelayCommand(_ => GoToMyOrders());
+            GoToProfileCommand = new BookWiseRelayCommand(_ => GoToProfile());
+
+            // Realtime update every 5 seconds
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(5);
+            _timer.Tick += (s, e) => LoadStats();
+            _timer.Start();
         }
         public static event EventHandler? DashboardStatsChanged;
         public static void NotifyStatsChanged() => DashboardStatsChanged?.Invoke(null, EventArgs.Empty);
         public void ReloadStats() => LoadStats();
         private async void LoadStats()
         {
-            TotalBooks = await _bookService.CountBooksAsync();
-            await Task.Yield();
+            BookCount = await _bookService.CountBooksAsync();
+            OrderCount = await _orderService.CountOrdersAsync();
+            MyOrderCount = CurrentUser != null ? await _orderService.CountOrdersByUserAsync(CurrentUser.Id) : 0;
+            MyBookCount = CurrentUser != null ? await _bookService.CountBooksByUserAsync(CurrentUser.Id) : 0;
+            TotalBooks = BookCount;
+            TotalOrders = OrderCount;
             TotalUsers = await _userService.CountUsersAsync();
-            await Task.Yield();
-            TotalOrders = await _orderService.CountOrdersAsync();
-            await Task.Yield();
             TotalRevenue = await _orderService.CalculateTotalRevenueAsync();
-            await Task.Yield();
             TotalCategories = await _categoryService.CountCategoriesAsync();
+            OnPropertyChanged(nameof(BookCount));
+            OnPropertyChanged(nameof(OrderCount));
+            OnPropertyChanged(nameof(MyOrderCount));
+            OnPropertyChanged(nameof(MyBookCount));
             OnPropertyChanged(nameof(TotalBooks));
             OnPropertyChanged(nameof(TotalUsers));
             OnPropertyChanged(nameof(TotalOrders));
@@ -61,44 +88,23 @@ namespace PresentationLayer.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string? name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         private void GoToBooks()
         {
-            if (!IsAdmin())
+            if (!IsAdmin)
             {
                 MessageBox.Show("Chỉ Admin mới được truy cập chức năng này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             RequestNavigate?.Invoke("Books");
         }
-        private void GoToUsers()
-        {
-            if (!IsAdmin())
-            {
-                MessageBox.Show("Chỉ Admin mới được truy cập chức năng này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            RequestNavigate?.Invoke("Users");
-        }
         private void GoToOrders()
         {
-            if (!IsAdmin())
+            if (!IsAdmin)
             {
                 MessageBox.Show("Chỉ Admin mới được truy cập chức năng này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             RequestNavigate?.Invoke("Orders");
         }
-        private void GoToCategories()
-        {
-            if (!IsAdmin())
-            {
-                MessageBox.Show("Chỉ Admin mới được truy cập chức năng này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            RequestNavigate?.Invoke("Categories");
-        }
-        private bool IsAdmin()
-        {
-            var app = Application.Current as PresentationLayer.App;
-            return app?.CurrentUser?.Role == "Admin";
-        }
+        private void GoToMyOrders() { /* TODO: Implement navigation to My Orders */ }
+        private void GoToProfile() { /* TODO: Implement navigation to Profile */ }
     }
 } 

@@ -19,5 +19,6 @@ namespace BusinessLayer.Services
         Task<int> CountBooksInStockAsync();
         Task<IEnumerable<Book>> GetLowStockBooksAsync(int threshold);
         Task<IEnumerable<Book>> GetAllAsync();
+        Task<int> CountBooksByUserAsync(int id);
     }
 } 

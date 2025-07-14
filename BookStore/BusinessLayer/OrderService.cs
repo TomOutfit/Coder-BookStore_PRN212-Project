@@ -146,5 +146,10 @@ namespace BusinessLayer.Services
         {
             return await _orderRepository.GetAllAsync(1, int.MaxValue, null, null, "User,OrderDetails.Book");
         }
+
+        public async Task<int> CountOrdersByUserAsync(int userId)
+        {
+            return await _orderRepository.CountOrdersByUserAsync(userId);
+        }
     }
 } 

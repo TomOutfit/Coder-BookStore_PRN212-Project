@@ -5,6 +5,8 @@ using System.Windows.Input;
 using BusinessLayer.Services;
 using Entities;
 using PresentationLayer.Commands;
+using System.Windows; // Add this
+using System;
 
 namespace PresentationLayer.ViewModels
 {
@@ -18,10 +20,11 @@ namespace PresentationLayer.ViewModels
         public Category? SelectedCategory { get => _selectedCategory; set { _selectedCategory = value; Book.Genre = value?.Name; OnPropertyChanged(); } }
         public string DialogTitle { get; set; }
         public string ErrorMessage { get; set; } = string.Empty;
-        public ICommand SaveCommand { get; }
+        public ICommand SaveCommand { get; private set; } // Make private set
         public ICommand CancelCommand { get; }
         public ObservableCollection<string> GenreOptions { get; set; } = new();
         public ObservableCollection<string> AuthorOptions { get; set; } = new();
+        public bool IsEdit => Book != null && Book.Id > 0; // Add IsEdit property
         public event PropertyChangedEventHandler? PropertyChanged;
         public BookDialogViewModel(IBookService bookService, ICategoryService categoryService, Book? book = null, string title = "Thêm sách")
         {
@@ -45,6 +48,8 @@ namespace PresentationLayer.ViewModels
             CancelCommand = new BookWiseRelayCommand(_ => Cancel());
             LoadCategories();
             LoadBookOptions();
+            if (Book != null)
+                Book.PropertyChanged += (s, e) => OnPropertyChanged(nameof(Book));
         }
         private async void LoadCategories()
         {
@@ -68,24 +73,25 @@ namespace PresentationLayer.ViewModels
         }
         private bool CanSave()
         {
-            return !string.IsNullOrWhiteSpace(Book.Title) && !string.IsNullOrWhiteSpace(Book.Genre) && Book.Price > 0 && Book.Stock >= 0;
+            return !string.IsNullOrWhiteSpace(Book?.Title)
+                && !string.IsNullOrWhiteSpace(Book?.Author)
+                && !string.IsNullOrWhiteSpace(Book?.Genre)
+                && Book?.Price > 0
+                && Book?.Stock >= 0; // Use Stock instead of Quantity
         }
         private async void Save()
         {
-            ErrorMessage = string.Empty;
             try
             {
-                Book.Genre = SelectedCategory?.Name;
-                if (Book.Id == 0)
-                    await _bookService.AddBookAsync(Book);
-                else
+                if (IsEdit)
                     await _bookService.UpdateBookAsync(Book);
+                else
+                    await _bookService.AddBookAsync(Book); // Use AddBookAsync
                 CloseDialog(true);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                ErrorMessage = ex.Message;
-                OnPropertyChanged(nameof(ErrorMessage));
+                MessageBox.Show($"Lỗi khi lưu sách: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void Cancel() => CloseDialog(false);

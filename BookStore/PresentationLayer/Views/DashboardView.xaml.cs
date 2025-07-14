@@ -22,10 +22,7 @@ namespace PresentationLayer.Views
 
         private void DashboardView_Loaded(object sender, RoutedEventArgs e)
         {
-            var app = Application.Current as PresentationLayer.App;
-            bool isAdmin = string.Equals(app?.CurrentUser?.Role, "Admin", System.StringComparison.OrdinalIgnoreCase);
-            AdminStatsPanel.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
-            NoPermissionPanel.Visibility = isAdmin ? Visibility.Collapsed : Visibility.Visible;
+            var vm = DataContext as ViewModels.DashboardViewModel;
         }
     }
 } 

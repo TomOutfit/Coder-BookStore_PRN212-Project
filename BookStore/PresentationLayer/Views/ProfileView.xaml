@@ -5,34 +5,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:helpers="clr-namespace:PresentationLayer.Helpers"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="900">
-    <Border CornerRadius="12" Background="{StaticResource CardBrush}" Padding="32" Margin="32" Effect="{StaticResource CosmoShadow}">
+    <Border CornerRadius="16" Background="{StaticResource CardBrush}" Padding="40" Margin="40" Effect="{StaticResource CosmoShadow}">
         <StackPanel>
-            <TextBlock Text="👤 Thông tin cá nhân" FontSize="24" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}" Margin="0,0,0,24"/>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
-                <TextBlock Text="Tên đăng nhập:" Width="140" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Username}" IsReadOnly="True" Width="260"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
-                <TextBlock Text="Họ:" Width="70" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding LastName, Mode=TwoWay}" Width="90"/>
-                <TextBlock Text="Tên:" Width="50" FontWeight="SemiBold" VerticalAlignment="Center" Margin="12,0,0,0"/>
-                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FirstName, Mode=TwoWay}" Width="90"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
-                <TextBlock Text="Email:" Width="140" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Email}" Width="260"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
-                <TextBlock Text="Số điện thoại:" Width="140" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding PhoneNumber}" Width="260"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
-                <TextBlock Text="Mật khẩu mới:" Width="140" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                <PasswordBox Width="260"
-                             helpers:BookWisePasswordBoxHelper.BindPassword="True"
-                             helpers:BookWisePasswordBoxHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-            <Button Style="{StaticResource CosmoButton}" Content="Cập nhật" Command="{Binding SaveCommand}" Width="120" Margin="0,18,0,0" HorizontalAlignment="Left"/>
+            <TextBlock Text="👤 Thông tin cá nhân" FontSize="28" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}" Margin="0,0,0,32" HorizontalAlignment="Center"/>
+            <Border Background="#F5F8FA" CornerRadius="10" Padding="24" Margin="0,0,0,24" BorderBrush="#E0E0E0" BorderThickness="1">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="Tên đăng nhập:" Width="140" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Username}" IsReadOnly="True" Width="260"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="Họ:" Width="70" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding LastName, Mode=TwoWay}" Width="110"/>
+                        <TextBlock Text="Tên:" Width="50" FontWeight="SemiBold" VerticalAlignment="Center" Margin="16,0,0,0"/>
+                        <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FirstName, Mode=TwoWay}" Width="110"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="Email:" Width="140" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Email}" Width="260"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="Số điện thoại:" Width="140" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding PhoneNumber}" Width="260"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                        <TextBlock Text="Mật khẩu mới:" Width="140" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <PasswordBox Width="260"
+                                     helpers:BookWisePasswordBoxHelper.BindPassword="True"
+                                     helpers:BookWisePasswordBoxHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Button Style="{StaticResource CosmoButton}" Content="🔄 Cập nhật" Command="{Binding SaveCommand}" Width="160" Height="44" Margin="0,0,0,0" HorizontalAlignment="Center" FontSize="18"/>
         </StackPanel>
     </Border>
 </UserControl>

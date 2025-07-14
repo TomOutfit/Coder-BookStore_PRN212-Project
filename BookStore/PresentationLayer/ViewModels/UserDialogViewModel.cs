@@ -7,6 +7,8 @@ using Entities;
 using PresentationLayer.Commands;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
+using System.Windows;
 
 namespace PresentationLayer.ViewModels
 {
@@ -66,13 +68,13 @@ namespace PresentationLayer.ViewModels
         }
         private bool CanSave()
         {
-            if (User.Id == 0)
-                return !string.IsNullOrWhiteSpace(User.Username) && !string.IsNullOrWhiteSpace(User.Email) && SelectedRole != null && !string.IsNullOrWhiteSpace(Password);
-            return !string.IsNullOrWhiteSpace(User.Username) && !string.IsNullOrWhiteSpace(User.Email) && SelectedRole != null;
+            return !string.IsNullOrWhiteSpace(User?.Username)
+                && !string.IsNullOrWhiteSpace(User?.FullName)
+                && !string.IsNullOrWhiteSpace(User?.Email)
+                && SelectedRole != null;
         }
         private async void Save()
         {
-            ErrorMessage = string.Empty;
             try
             {
                 User.Role = SelectedRole?.Name ?? "User";
@@ -85,10 +87,9 @@ namespace PresentationLayer.ViewModels
                     await _userService.UpdateUserAsync(User);
                 CloseDialog(true);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                ErrorMessage = ex.Message;
-                OnPropertyChanged(nameof(ErrorMessage));
+                MessageBox.Show($"Lỗi khi lưu người dùng: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void Cancel() => CloseDialog(false);

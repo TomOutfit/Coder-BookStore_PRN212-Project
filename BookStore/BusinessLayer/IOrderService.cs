@@ -18,5 +18,6 @@ namespace BusinessLayer.Services
         Task<decimal> CalculateTotalRevenueAsync();
         Task<int> CountOrdersByStatusAsync(string status);
         Task<IEnumerable<Order>> GetAllAsync();
+        Task<int> CountOrdersByUserAsync(int id);
     }
 } 

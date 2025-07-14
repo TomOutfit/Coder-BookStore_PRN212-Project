@@ -40,5 +40,12 @@ namespace DataLayer
                 .AsNoTracking()
                 .ToListAsync();
         }
+
+        public async Task<int> CountOrdersByUserAsync(int userId)
+        {
+            // Replace 'UserId' with the actual property that links an order to a user, if different
+            using var context = _contextFactory.CreateDbContext();
+            return await context.Orders.CountAsync(o => o.UserId == userId);
+        }
     }
 } 

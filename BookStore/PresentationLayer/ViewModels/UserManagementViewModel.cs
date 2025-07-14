@@ -60,16 +60,21 @@ namespace PresentationLayer.ViewModels
             OnPropertyChanged(nameof(TotalPages));
         }
         private async void SearchUsers() { CurrentPage = 1; await LoadUsers(); }
-        private async void AddUser()
+        private void AddUser()
         {
-            var vm = new UserDialogViewModel(_userService, _roleService, null, "Thêm người dùng");
-            var dialog = new UserDialog(vm);
-            if (dialog.ShowDialog() == true)
+            try
             {
-                _ = LoadUsers();
-                PresentationLayer.ViewModels.DashboardViewModel.NotifyStatsChanged();
-                MessageBox.Show("Thêm người dùng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                DataChangeNotifier.NotifyDataChanged();
+                var vm = new UserDialogViewModel(_userService, _roleService, null, "Thêm người dùng");
+                var dialog = new UserDialog(vm);
+                if (dialog.ShowDialog() == true)
+                {
+                    LoadUsers();
+                    MessageBox.Show("Thêm người dùng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở dialog: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void EditUser()
@@ -77,17 +82,22 @@ namespace PresentationLayer.ViewModels
             if (SelectedUser != null)
                 EditUser(SelectedUser);
         }
-        private async void EditUser(User? user)
+        private void EditUser(User? user)
         {
             if (user == null) return;
-            var vm = new UserDialogViewModel(_userService, _roleService, user, "Sửa người dùng");
-            var dialog = new UserDialog(vm);
-            if (dialog.ShowDialog() == true)
+            try
             {
-                _ = LoadUsers();
-                PresentationLayer.ViewModels.DashboardViewModel.NotifyStatsChanged();
-                MessageBox.Show("Cập nhật người dùng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                DataChangeNotifier.NotifyDataChanged();
+                var vm = new UserDialogViewModel(_userService, _roleService, user, "Sửa người dùng");
+                var dialog = new UserDialog(vm);
+                if (dialog.ShowDialog() == true)
+                {
+                    using var _ = LoadUsers();
+                    MessageBox.Show("Cập nhật người dùng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở dialog: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void DeleteUser()

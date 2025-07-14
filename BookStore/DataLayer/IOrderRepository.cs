@@ -11,5 +11,6 @@ namespace DataLayer
     {
         Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId);
         Task<IEnumerable<Order>> GetOrdersByStatusAsync(string status);
+        Task<int> CountOrdersByUserAsync(int userId);
     }
 } 

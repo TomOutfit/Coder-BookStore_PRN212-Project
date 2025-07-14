@@ -118,8 +118,7 @@ namespace PresentationLayer.ViewModels
             var dialog = new BookDialog(vm);
             if (dialog.ShowDialog() == true)
             {
-                _ = LoadBooks();
-                DataChangeNotifier.NotifyDataChanged();
+                _ = LoadBooks(); // Load lại danh sách từ DB
                 MessageBox.Show("Cập nhật sách thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

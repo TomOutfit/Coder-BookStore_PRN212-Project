@@ -82,27 +82,41 @@ namespace PresentationLayer.ViewModels
         private async void SearchOrders() { CurrentPage = 1; await LoadOrders(); }
         private void AddOrder()
         {
-            var vm = new OrderDialogViewModel(_orderService, _userService, null, "Thêm đơn hàng");
-            var dialog = new OrderDialog(vm);
-            if (dialog.ShowDialog() == true)
+            try
             {
-                LoadOrders();
-                PresentationLayer.ViewModels.DashboardViewModel.NotifyStatsChanged();
-                MessageBox.Show("Thêm đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                DataChangeNotifier.NotifyDataChanged();
+                var vm = new OrderDialogViewModel(_orderService, _userService, null, "Thêm đơn hàng");
+                var dialog = new OrderDialog(vm);
+                if (dialog.ShowDialog() == true)
+                {
+                    LoadOrders();
+                    PresentationLayer.ViewModels.DashboardViewModel.NotifyStatsChanged();
+                    MessageBox.Show("Thêm đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    DataChangeNotifier.NotifyDataChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở dialog: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void EditOrder(Order? order)
         {
             if (order == null) return;
-            var vm = new OrderDialogViewModel(_orderService, _userService, order, "Sửa đơn hàng");
-            var dialog = new OrderDialog(vm);
-            if (dialog.ShowDialog() == true)
+            try
             {
-                LoadOrders();
-                PresentationLayer.ViewModels.DashboardViewModel.NotifyStatsChanged();
-                MessageBox.Show("Cập nhật đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                DataChangeNotifier.NotifyDataChanged();
+                var vm = new OrderDialogViewModel(_orderService, _userService, order, "Sửa đơn hàng");
+                var dialog = new OrderDialog(vm);
+                if (dialog.ShowDialog() == true)
+                {
+                    LoadOrders();
+                    PresentationLayer.ViewModels.DashboardViewModel.NotifyStatsChanged();
+                    MessageBox.Show("Cập nhật đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    DataChangeNotifier.NotifyDataChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở dialog: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private async void DeleteOrder(Order? order)
