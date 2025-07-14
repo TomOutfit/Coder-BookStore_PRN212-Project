@@ -17,7 +17,22 @@ namespace PresentationLayer.ViewModels
         public Order Order { get; set; }
         public ObservableCollection<OrderDetail> OrderDetails { get; set; }
         public ObservableCollection<User> Users { get; set; } = new();
-        public User? SelectedUser { get; set; }
+        private User? _selectedUser;
+        public User? SelectedUser
+        {
+            get => _selectedUser;
+            set
+            {
+                if (_selectedUser != value)
+                {
+                    _selectedUser = value;
+                    OnPropertyChanged();
+                    // Đồng bộ UserId cho Order
+                    if (_selectedUser != null)
+                        Order.UserId = _selectedUser.Id;
+                }
+            }
+        }
         public ObservableCollection<string> StatusList { get; set; }
         public string DialogTitle { get; set; }
         public string ErrorMessage { get; set; } = string.Empty;
@@ -54,7 +69,11 @@ namespace PresentationLayer.ViewModels
         {
             var users = await _userService.GetAllUsersAsync(1, 100);
             Users = new ObservableCollection<User>(users);
+            // Đồng bộ SelectedUser với Order.UserId
+            if (Order != null && Order.UserId > 0)
+                SelectedUser = Users.FirstOrDefault(u => u.Id == Order.UserId);
             OnPropertyChanged(nameof(Users));
+            OnPropertyChanged(nameof(SelectedUser));
         }
         private bool CanSave()
         {

@@ -4,6 +4,7 @@
     <SolidColorBrush x:Key="CardBrush" Color="#FFF8FAFC"/>
     <SolidColorBrush x:Key="ForegroundBrush" Color="#232B3E"/>
     <SolidColorBrush x:Key="AccentBrush" Color="#06B6D4"/>
+    <SolidColorBrush x:Key="DangerBrush" Color="#EF4444"/>
 
     <!-- Shadow Effect -->
     <DropShadowEffect x:Key="CosmoShadow" BlurRadius="16" ShadowDepth="2" Color="#33000000"/>

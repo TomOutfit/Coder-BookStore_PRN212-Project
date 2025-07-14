@@ -1,14 +1,14 @@
 <Window x:Class="PresentationLayer.Views.BookDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Thông tin Sách" Height="480" Width="520" WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Title="Thông tin Sách" Height="502" Width="520" WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow" Background="{StaticResource CardBrush}">
     <Border CornerRadius="12" Background="{StaticResource CardBrush}" Padding="32" Margin="16" Effect="{StaticResource CosmoShadow}">
         <StackPanel>
             <TextBlock Text="Thông tin Sách" Style="{StaticResource PageTitle}" Margin="0,0,0,24"/>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                 <TextBlock Text="Tên sách:" Width="120" VerticalAlignment="Center"/>
-                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Book.Title, UpdateSourceTrigger=PropertyChanged}" Width="260"/>
+                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Book.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="260"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                 <TextBlock Text="Tác giả:" Width="120" VerticalAlignment="Center"/>
@@ -19,12 +19,16 @@
                 <ComboBox ItemsSource="{Binding GenreOptions}" SelectedItem="{Binding Book.Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="260" IsEditable="True"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                <TextBlock Text="ISBN:" Width="120" VerticalAlignment="Center"/>
+                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Book.ISBN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="260"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                 <TextBlock Text="Giá bán:" Width="120" VerticalAlignment="Center"/>
-                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Book.Price, UpdateSourceTrigger=PropertyChanged}" Width="260"/>
+                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Book.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="260"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
                 <TextBlock Text="Số lượng:" Width="120" VerticalAlignment="Center"/>
-                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Book.Quantity, UpdateSourceTrigger=PropertyChanged}" Width="260"/>
+                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Book.Stock, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="260"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,32,0,0">
                 <Button Style="{StaticResource CosmoButton}" Content="✔ Lưu" Command="{Binding SaveCommand}" Width="110" Margin="0,0,8,0"/>

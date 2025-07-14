@@ -9,5 +9,6 @@ namespace DataLayer
     public interface IBookRepository : IRepository<Book>
     {
         Task<Book?> GetBookByISBNAsync(string isbn);
+        Task<int> CountBooksByUserAsync(int userId);
     }
-} 
+}

@@ -2,8 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace Entities
 {
@@ -11,55 +13,124 @@ namespace Entities
     /// Represents a book entity in the bookstore system.
     /// </summary>
     [Index(nameof(ISBN), IsUnique = true)]
-    public class Book
+    public class Book : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         [Key]
         public int Id { get; set; }
 
+        private string _title;
         [Required]
         [StringLength(255)]
-        public string Title { get; set; } = null!;
+        public string Title
+        {
+            get => _title;
+            set { _title = value; OnPropertyChanged(); }
+        }
 
+        private string? _author;
         [StringLength(255)]
-        public string? Author { get; set; }
+        public string? Author
+        {
+            get => _author;
+            set { _author = value; OnPropertyChanged(); }
+        }
 
+        private decimal _price;
         [Required]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal Price { get; set; }
+        public decimal Price
+        {
+            get => _price;
+            set { _price = value; OnPropertyChanged(); }
+        }
 
+        private DateTime? _publishedDate;
         [DataType(DataType.Date)]
-        public DateTime? PublishedDate { get; set; }
+        public DateTime? PublishedDate
+        {
+            get => _publishedDate;
+            set { _publishedDate = value; OnPropertyChanged(); }
+        }
 
+        private string _isbn;
         [Required]
         [StringLength(20)]
-        public string ISBN { get; set; } = null!;
+        public string ISBN
+        {
+            get => _isbn;
+            set { _isbn = value; OnPropertyChanged(); }
+        }
 
+        private string? _genre;
         [StringLength(50)]
-        public string? Genre { get; set; }
+        public string? Genre
+        {
+            get => _genre;
+            set { _genre = value; OnPropertyChanged(); }
+        }
 
-        public string? Description { get; set; }
+        private string? _description;
+        public string? Description
+        {
+            get => _description;
+            set { _description = value; OnPropertyChanged(); }
+        }
 
+        private int _stock;
         [Required]
-        public int Stock { get; set; }
+        public int Stock
+        {
+            get => _stock;
+            set { _stock = value; OnPropertyChanged(); }
+        }
 
+        private string? _publisher;
         [StringLength(100)]
-        public string? Publisher { get; set; }
+        public string? Publisher
+        {
+            get => _publisher;
+            set { _publisher = value; OnPropertyChanged(); }
+        }
 
+        private string? _language;
         [StringLength(50)]
-        public string? Language { get; set; }
+        public string? Language
+        {
+            get => _language;
+            set { _language = value; OnPropertyChanged(); }
+        }
 
+        private DateTime _createdAt;
         [Required]
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt
+        {
+            get => _createdAt;
+            set { _createdAt = value; OnPropertyChanged(); }
+        }
 
+        private DateTime _updatedAt;
         [Required]
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt
+        {
+            get => _updatedAt;
+            set { _updatedAt = value; OnPropertyChanged(); }
+        }
 
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new HashSet<OrderDetail>();
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
         // Constructors
-        public Book() { }
+        public Book()
+        {
+            _title = string.Empty;
+            _isbn = string.Empty;
+            _createdAt = DateTime.UtcNow;
+            _updatedAt = DateTime.UtcNow;
+            OrderDetails = new HashSet<OrderDetail>();
+        }
 
-        public Book(Book other)
+        public Book(Book other) : this()
         {
             Id = other.Id;
             Title = other.Title;
@@ -75,5 +146,8 @@ namespace Entities
             CreatedAt = other.CreatedAt;
             UpdatedAt = other.UpdatedAt;
         }
+
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 } 
