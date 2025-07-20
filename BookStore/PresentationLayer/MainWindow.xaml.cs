@@ -12,13 +12,15 @@ namespace PresentationLayer
         private readonly ViewModels.ProfileViewModel _profileVm;
         private readonly ViewModels.DashboardViewModel _dashboardVm;
         private readonly ViewModels.WelcomeViewModel _welcomeVm;
+        private readonly ViewModels.MyOrdersViewModel _myOrdersVm;
         public MainWindow(
             ViewModels.BookManagementViewModel bookVm,
             ViewModels.UserManagementViewModel userVm,
             ViewModels.OrderManagementViewModel orderVm,
             ViewModels.CategoryManagementViewModel categoryVm,
             ViewModels.ProfileViewModel profileVm,
-            ViewModels.DashboardViewModel dashboardVm)
+            ViewModels.DashboardViewModel dashboardVm,
+            ViewModels.MyOrdersViewModel myOrdersVm)
         {
             try
             {
@@ -32,6 +34,7 @@ namespace PresentationLayer
                 _categoryVm = categoryVm;
                 _profileVm = profileVm;
                 _dashboardVm = dashboardVm;
+                _myOrdersVm = myOrdersVm;
                 // Lấy WelcomeViewModel từ DI container
                 var app = System.Windows.Application.Current as PresentationLayer.App;
                 _welcomeVm = app?.ServiceProvider.GetService(typeof(ViewModels.WelcomeViewModel)) as ViewModels.WelcomeViewModel;
@@ -101,6 +104,7 @@ namespace PresentationLayer
                     "Orders" => new Views.OrderManagementView(_orderVm),
                     "Categories" => new Views.CategoryManagementView(_categoryVm),
                     "Profile" => new Views.ProfileView(_profileVm),
+                    "MyOrders" => new Views.MyOrdersView(_myOrdersVm),
                     _ => new Views.DashboardView(_dashboardVm),
                 };
                 System.Diagnostics.Debug.WriteLine($"View created: {view.GetType().Name}");

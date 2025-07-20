@@ -1,10 +1,11 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using BusinessLayer.Services;
 using Entities;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using PresentationLayer.Commands;
-using BusinessLayer.Services;
+using System.Threading.Tasks;
 using PresentationLayer.Views;
 using System.Windows;
 using System;
@@ -15,25 +16,39 @@ namespace PresentationLayer.ViewModels
     {
         private readonly IOrderService _orderService;
         private readonly IUserService _userService;
-        public ObservableCollection<Order> Orders { get; set; } = new();
-        public ObservableCollection<OrderDisplayModel> OrdersDisplay { get; set; } = new();
-        private Order? _selectedOrder;
-        public Order? SelectedOrder { get => _selectedOrder; set { _selectedOrder = value; OnPropertyChanged(); } }
+        public ObservableCollection<OrderDisplayModel> Orders { get; set; } = new();
+        private OrderDisplayModel? _selectedOrder;
+        public OrderDisplayModel? SelectedOrder { get => _selectedOrder; set { _selectedOrder = value; OnPropertyChanged(); } }
         private string _searchText = string.Empty;
         public string SearchText { get => _searchText; set { _searchText = value; OnPropertyChanged(); SearchOrders(); } }
         private int _currentPage = 1;
         public int CurrentPage { get => _currentPage; set { _currentPage = value; OnPropertyChanged(); LoadOrders(); } }
-        public int PageSize { get; set; } = 10;
-        public int TotalPages { get; set; }
         public ObservableCollection<int> PageSizeOptions { get; } = new() { 5, 10, 20, 50, 100 };
-        public ICommand AddCommand { get; }
-        public ICommand EditCommand { get; }
-        public ICommand DeleteCommand { get; }
-        public ICommand NextPageCommand { get; }
-        public ICommand PrevPageCommand { get; }
+        private string _goToPageText = "";
+        public string GoToPageText { get => _goToPageText; set { _goToPageText = value; OnPropertyChanged(); } }
+        public ICommand FirstPageCommand { get; }
+        public ICommand LastPageCommand { get; }
+        public ICommand GoToPageCommand { get; }
+        public bool CanGoNext => CurrentPage < TotalPages;
+        public bool CanGoPrevious => CurrentPage > 1;
+        private int _pageSize = 10;
+        public int PageSize {
+            get => _pageSize;
+            set {
+                if (_pageSize != value) {
+                    _pageSize = value;
+                    OnPropertyChanged();
+                    CurrentPage = 1;
+                    _ = LoadOrders();
+                }
+            }
+        }
+        public int TotalPages { get; set; }
         public ICommand AddOrderCommand { get; }
         public ICommand EditOrderCommand { get; }
         public ICommand DeleteOrderCommand { get; }
+        public ICommand NextPageCommand { get; }
+        public ICommand PrevPageCommand { get; }
         public ICommand SearchCommand { get; }
         public ICommand RefreshCommand { get; }
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -41,16 +56,16 @@ namespace PresentationLayer.ViewModels
         {
             _orderService = orderService;
             _userService = userService;
-            AddCommand = new BookWiseRelayCommand(_ => AddOrder());
-            EditCommand = new BookWiseRelayCommand(_ => EditOrder(), _ => SelectedOrder != null);
-            DeleteCommand = new BookWiseRelayCommand(_ => DeleteOrder(), _ => SelectedOrder != null);
-            NextPageCommand = new BookWiseRelayCommand(_ => { if (CurrentPage < TotalPages) { CurrentPage++; } });
-            PrevPageCommand = new BookWiseRelayCommand(_ => { if (CurrentPage > 1) { CurrentPage--; } });
             AddOrderCommand = new BookWiseRelayCommand(_ => AddOrder());
-            EditOrderCommand = new BookWiseRelayCommand(o => EditOrder(o as Order), o => o is Order);
-            DeleteOrderCommand = new BookWiseRelayCommand(o => DeleteOrder(o as Order), o => o is Order);
-            SearchCommand = new BookWiseRelayCommand(_ => SearchOrders());
+            EditOrderCommand = new BookWiseRelayCommand(o => EditOrder(o as OrderDisplayModel), o => o is OrderDisplayModel);
+            DeleteOrderCommand = new BookWiseRelayCommand(o => DeleteOrder(o as OrderDisplayModel), o => o is OrderDisplayModel);
+            NextPageCommand = new BookWiseRelayCommand(_ => { if (CanGoNext) { CurrentPage++; } }, _ => CanGoNext);
+            PrevPageCommand = new BookWiseRelayCommand(_ => { if (CanGoPrevious) { CurrentPage--; } }, _ => CanGoPrevious);
+            FirstPageCommand = new BookWiseRelayCommand(_ => { if (CurrentPage != 1) { CurrentPage = 1; } }, _ => CanGoPrevious);
+            LastPageCommand = new BookWiseRelayCommand(_ => { if (CurrentPage != TotalPages) { CurrentPage = TotalPages; } }, _ => CanGoNext);
+            GoToPageCommand = new BookWiseRelayCommand(_ => GoToPage(), _ => true);
             RefreshCommand = new BookWiseRelayCommand(_ => RefreshOrders());
+            SearchCommand = new BookWiseRelayCommand(_ => SearchOrders());
             _ = LoadOrders();
             DataChangeNotifier.DataChanged += () => LoadOrders();
         }
@@ -59,67 +74,54 @@ namespace PresentationLayer.ViewModels
             var result = await _orderService.GetAllOrdersAsync(CurrentPage, PageSize, SearchText);
             var total = await _orderService.CountOrdersAsync(SearchText);
             Orders.Clear();
-            OrdersDisplay.Clear();
             var users = (await _userService.GetAllAsync()).ToList();
             foreach (var o in result)
             {
-                Orders.Add(o);
                 var user = users.FirstOrDefault(u => u.Id == o.UserId);
-                OrdersDisplay.Add(new OrderDisplayModel
+                Orders.Add(new OrderDisplayModel
                 {
-                    OrderId = o.Id,
+                    Id = o.Id,
                     CustomerName = user != null ? (user.FirstName + " " + user.LastName).Trim() : "Không rõ",
                     OrderDate = o.OrderDate,
                     TotalAmount = o.TotalAmount,
                     Status = o.Status
-                    // Thêm các property khác nếu cần
                 });
             }
             TotalPages = (total + PageSize - 1) / PageSize;
+            if (CurrentPage > TotalPages && TotalPages > 0)
+            {
+                CurrentPage = TotalPages;
+                return;
+            }
             OnPropertyChanged(nameof(TotalPages));
-            OnPropertyChanged(nameof(OrdersDisplay));
+            OnPropertyChanged(nameof(CanGoNext));
+            OnPropertyChanged(nameof(CanGoPrevious));
         }
         private async void SearchOrders() { CurrentPage = 1; await LoadOrders(); }
-        private void AddOrder()
+        private async void AddOrder()
         {
-            try
+            var vm = new OrderDialogViewModel(_orderService, _userService, null, "Thêm đơn hàng");
+            var dialog = new OrderDialog(vm);
+            if (dialog.ShowDialog() == true)
             {
-                var vm = new OrderDialogViewModel(_orderService, _userService, null, "Thêm đơn hàng");
-                var dialog = new OrderDialog(vm);
-                if (dialog.ShowDialog() == true)
-                {
-                    LoadOrders();
-                    PresentationLayer.ViewModels.DashboardViewModel.NotifyStatsChanged();
-                    MessageBox.Show("Thêm đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                    DataChangeNotifier.NotifyDataChanged();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi mở dialog: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                _ = LoadOrders();
+                DataChangeNotifier.NotifyDataChanged();
+                MessageBox.Show("Thêm đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-        private void EditOrder(Order? order)
+        private async void EditOrder(OrderDisplayModel? order)
         {
             if (order == null) return;
-            try
+            var orderEntity = await _orderService.GetOrderByIdAsync(order.Id);
+            var vm = new OrderDialogViewModel(_orderService, _userService, orderEntity, "Sửa đơn hàng");
+            var dialog = new OrderDialog(vm);
+            if (dialog.ShowDialog() == true)
             {
-                var vm = new OrderDialogViewModel(_orderService, _userService, order, "Sửa đơn hàng");
-                var dialog = new OrderDialog(vm);
-                if (dialog.ShowDialog() == true)
-                {
-                    LoadOrders();
-                    PresentationLayer.ViewModels.DashboardViewModel.NotifyStatsChanged();
-                    MessageBox.Show("Cập nhật đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                    DataChangeNotifier.NotifyDataChanged();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi mở dialog: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                _ = LoadOrders();
+                MessageBox.Show("Cập nhật đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-        private async void DeleteOrder(Order? order)
+        private async void DeleteOrder(OrderDisplayModel? order)
         {
             if (order == null) return;
             if (MessageBox.Show($"Bạn có chắc muốn xóa đơn hàng #{order.Id}?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
@@ -127,10 +129,9 @@ namespace PresentationLayer.ViewModels
                 try
                 {
                     await _orderService.DeleteOrderAsync(order.Id);
-                    LoadOrders();
-                    PresentationLayer.ViewModels.DashboardViewModel.NotifyStatsChanged();
-                    MessageBox.Show("Xóa đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    _ = LoadOrders();
                     DataChangeNotifier.NotifyDataChanged();
+                    MessageBox.Show("Xóa đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -138,15 +139,16 @@ namespace PresentationLayer.ViewModels
                 }
             }
         }
-        private void EditOrder()
+        private void GoToPage()
         {
-            if (SelectedOrder != null)
-                EditOrder(SelectedOrder);
-        }
-        private void DeleteOrder()
-        {
-            if (SelectedOrder != null)
-                DeleteOrder(SelectedOrder);
+            if (int.TryParse(GoToPageText, out int page))
+            {
+                if (page >= 1 && page <= TotalPages)
+                {
+                    CurrentPage = page;
+                }
+                GoToPageText = string.Empty;
+            }
         }
         private async void RefreshOrders()
         {
@@ -160,16 +162,17 @@ namespace PresentationLayer.ViewModels
                 MessageBox.Show($"Lỗi khi làm mới: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        protected void OnPropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
-
     public class OrderDisplayModel
     {
-        public int OrderId { get; set; }
+        public int Id { get; set; }
         public string CustomerName { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
         public string Status { get; set; }
-        // Thêm các property khác nếu cần
     }
 } 
