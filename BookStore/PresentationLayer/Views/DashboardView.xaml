@@ -7,21 +7,12 @@
         <conv:BookWiseBooleanToVisibilityConverter x:Key="BookWiseBooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <Grid Margin="32">
-        <!-- Nếu là Customer: chỉ hiện thông báo đỏ, ẩn TabControl -->
-        <TextBlock Text="Bạn không có quyền hành làm điều này !"
-                   FontSize="28"
-                   FontWeight="Bold"
-                   Foreground="Red"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Visibility="{Binding IsCustomer, Converter={StaticResource BookWiseBooleanToVisibilityConverter}}"/>
-        <!-- Nếu là Admin/Staff/Customer: hiện TabControl -->
-        <TabControl Margin="0,24,0,0"
-                    Visibility="{Binding IsCustomer, Converter={StaticResource BookWiseBooleanToVisibilityConverter}, ConverterParameter=invert}">
+        <!-- TabControl luôn hiển thị cho tất cả user -->
+        <TabControl Margin="0,24,0,0" x:Name="MainTabControl">
             <!-- Tab Admin -->
-            <TabItem Header="Admin"
+            <TabItem x:Name="AdminTab" Header="Admin"
                      Visibility="{Binding IsAdmin, Converter={StaticResource BookWiseBooleanToVisibilityConverter}}">
-                <StackPanel>
+                <StackPanel Height="387">
                     <TextBlock Text="🛡️ Bảng điều khiển Quản trị viên"
                                Style="{StaticResource PageTitle}"
                                Margin="0,0,0,24"/>
@@ -78,7 +69,7 @@
                 </StackPanel>
             </TabItem>
             <!-- Tab Staff -->
-            <TabItem Header="Staff"
+            <TabItem x:Name="StaffTab" Header="Staff"
                      Visibility="{Binding IsAdminOrStaff, Converter={StaticResource BookWiseBooleanToVisibilityConverter}}">
                 <StackPanel>
                     <TextBlock Text="🧑‍💼 Bảng điều khiển Nhân viên"
@@ -114,8 +105,8 @@
                 </StackPanel>
             </TabItem>
             <!-- Tab Customer -->
-            <TabItem Header="Customer"
-                     Visibility="{Binding IsStaffOrCustomer, Converter={StaticResource BookWiseBooleanToVisibilityConverter}}">
+            <TabItem x:Name="CustomerTab" Header="Customer"
+                     Visibility="{Binding IsAdminOrStaff, Converter={StaticResource BookWiseBooleanToVisibilityConverter}, ConverterParameter=invert}">
                 <StackPanel>
                     <TextBlock Text="🧑‍🎓 Bảng điều khiển Khách hàng"
                                Style="{StaticResource PageTitle}"

@@ -48,6 +48,7 @@ namespace PresentationLayer
             services.AddScoped<ViewModels.ProfileViewModel>();
             services.AddScoped<ViewModels.DashboardViewModel>();
             services.AddScoped<ViewModels.WelcomeViewModel>();
+            services.AddScoped<ViewModels.MyOrdersViewModel>();
             
             ServiceProvider = services.BuildServiceProvider();
         }
@@ -72,10 +73,11 @@ namespace PresentationLayer
                 var categoryVm = sp.GetRequiredService<ViewModels.CategoryManagementViewModel>();
                 var profileVm = sp.GetRequiredService<ViewModels.ProfileViewModel>();
                 var dashboardVm = sp.GetRequiredService<ViewModels.DashboardViewModel>();
+                var myOrdersVm = sp.GetRequiredService<ViewModels.MyOrdersViewModel>();
                 
                 System.Diagnostics.Debug.WriteLine("All ViewModels created successfully");
                 
-                var mainWindow = new MainWindow(bookVm, userVm, orderVm, categoryVm, profileVm, dashboardVm);
+                var mainWindow = new MainWindow(bookVm, userVm, orderVm, categoryVm, profileVm, dashboardVm, myOrdersVm);
                 System.Diagnostics.Debug.WriteLine("MainWindow created, showing...");
                 
                 // Set as main window to prevent immediate closing

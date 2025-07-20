@@ -25,7 +25,18 @@ namespace PresentationLayer.ViewModels
         public string SearchText { get => _searchText; set { _searchText = value; OnPropertyChanged(); SearchUsers(); } }
         private int _currentPage = 1;
         public int CurrentPage { get => _currentPage; set { _currentPage = value; OnPropertyChanged(); LoadUsers(); } }
-        public int PageSize { get; set; } = 10;
+        private int _pageSize = 10;
+        public int PageSize {
+            get => _pageSize;
+            set {
+                if (_pageSize != value) {
+                    _pageSize = value;
+                    OnPropertyChanged();
+                    CurrentPage = 1;
+                    _ = LoadUsers();
+                }
+            }
+        }
         public int TotalPages { get; set; }
         public ObservableCollection<int> PageSizeOptions { get; } = new() { 5, 10, 20, 50, 100 };
         public ICommand AddUserCommand { get; }

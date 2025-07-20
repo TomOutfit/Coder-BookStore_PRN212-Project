@@ -1,4 +1,4 @@
-USE master
+﻿USE master
 -- Drop database if it exists
 DROP DATABASE IF EXISTS [BookStoreDB_PRN];
 GO
@@ -105,9 +105,9 @@ VALUES
 -- Insert Users
 INSERT INTO [Users] ([Username], [Password], [Email], [FirstName], [LastName], [Address], [City], [State], [ZipCode], [PhoneNumber], [Role], [IsActive])
 VALUES
-    ('admin', 'hashed_admin_pass', 'alice.admin@bookstore.com', 'Alice', 'Nguyen', '123 Main St', 'Hanoi', 'Ha Noi', '10000', '+84-912345678', 'Admin', 1),
-    ('staff1', 'hashed_staff1', 'bob.staff@bookstore.com', 'Bob', 'Tran', '456 Maple Ave', 'Ho Chi Minh', 'Ho Chi Minh', '70000', '+84-934567890', 'Staff', 1),
-    ('staff2', 'hashed_staff2', 'carla.staff@bookstore.com', 'Carla', 'Le', '789 Oak Rd', 'Da Nang', 'Da Nang', '55000', '+84-945678901', 'Staff', 1),
+    ('admin', 'pass_admin', 'alice.admin@bookstore.com', 'Alice', 'Nguyen', '123 Main St', 'Hanoi', 'Ha Noi', '10000', '+84-912345678', 'Admin', 1),
+    ('staff1', 'pass_staff1', 'bob.staff@bookstore.com', 'Bob', 'Tran', '456 Maple Ave', 'Ho Chi Minh', 'Ho Chi Minh', '70000', '+84-934567890', 'Staff', 1),
+    ('staff2', 'pass_staff2', 'carla.staff@bookstore.com', 'Carla', 'Le', '789 Oak Rd', 'Da Nang', 'Da Nang', '55000', '+84-945678901', 'Staff', 1),
     ('john.smith', 'pass_john', 'john.smith@gmail.com', 'John', 'Smith', '12 Baker St', 'London', 'England', 'E1 6AN', '+44-20-7946-0958', 'User', 1),
     ('emma.jones', 'pass_emma', 'emma.jones@yahoo.com', 'Emma', 'Jones', '34 Queen St', 'Auckland', 'Auckland', '1010', '+64-9-123-4567', 'User', 1),
     ('li.wei', 'pass_li', 'li.wei@163.com', 'Li', 'Wei', '56 Nanjing Rd', 'Shanghai', 'Shanghai', '200000', '+86-21-1234-5678', 'User', 1),
@@ -124,7 +124,12 @@ VALUES
     ('fatima.zahra', 'pass_fatima', 'fatima.zahra@gmail.com', 'Fatima', 'Zahra', '303 Hassan II Ave', 'Casablanca', 'Casablanca', '20000', '+212-522-123456', 'User', 1),
     ('juan.perez', 'pass_juan', 'juan.perez@gmail.com', 'Juan', 'Perez', '404 Libertad', 'Buenos Aires', 'Buenos Aires', 'C1002', '+54-11-1234-5678', 'User', 1),
     ('sara.larsson', 'pass_sara', 'sara.larsson@gmail.com', 'Sara', 'Larsson', '505 Drottninggatan', 'Stockholm', 'Stockholm', '111 60', '+46-8-123-4567', 'User', 1),
-    ('noah.martin', 'pass_noah', 'noah.martin@gmail.com', 'Noah', 'Martin', '606 Rue Saint-Paul', 'Montreal', 'Quebec', 'H2Y 1H2', '+1-514-123-4567', 'User', 1);
+    ('noah.martin', 'pass_noah', 'noah.martin@gmail.com', 'Noah', 'Martin', '606 Rue Saint-Paul', 'Montreal', 'Quebec', 'H2Y 1H2', '+1-514-123-4567', 'User', 1),
+    ('manga.fan', 'pass_manga', 'manga.fan@mail.com', 'Yuki', 'Sato', '1 Sakura St', 'Tokyo', 'Kanto', '100-0001', '+81-3-1111-2222', 'User', 1), -- 21
+    ('comic.lover', 'pass_comic', 'comic.lover@mail.com', 'Bruce', 'Wayne', '1007 Mountain Dr', 'Gotham', 'New Jersey', '07001', '+1-201-555-0199', 'User', 1), -- 22
+    ('horror.reader', 'pass_horror', 'horror.reader@mail.com', 'Carrie', 'King', '13 Elm St', 'Derry', 'Maine', '04401', '+1-207-555-0133', 'User', 1), -- 23
+    ('philosopher', 'pass_philo', 'philosopher@mail.com', 'Immanuel', 'Kant', '42 Königsallee', 'Königsberg', 'Prussia', '23617', '+49-431-555-0101', 'User', 1), -- 24
+    ('sports.fan', 'pass_sports', 'sports.fan@mail.com', 'Andre', 'Agassi', '777 Tennis Ct', 'Las Vegas', 'Nevada', '89109', '+1-702-555-0777', 'User', 1); -- 25
 
 -- Insert Categories
 INSERT INTO [Categories] ([Name], [Description])
@@ -149,7 +154,19 @@ VALUES
     ('Drama', 'Books that explore human emotions and relationships'),
     ('Poetry', 'Books that use words to express emotions and ideas'),
     ('Classic', 'Books that are considered classics and have stood the test of time'),
-    ('Young Adult', 'Books designed for teenagers');
+    ('Young Adult', 'Books designed for teenagers'),
+    ('Manga', 'Japanese comics and graphic novels'),
+    ('Graphic Novel', 'Narrative works in comic-strip format'),
+    ('Horror', 'Books that aim to scare or unsettle readers'),
+    ('Philosophy', 'Books about fundamental questions of existence'),
+    ('Politics', 'Books about political systems and ideas'),
+    ('Sports', 'Books about sports, athletes, and games'),
+    ('Parenting', 'Books about raising children'),
+    ('Education', 'Books about teaching and learning'),
+    ('Comics', 'Comic books and strips'),
+    ('Memoir', 'Personal life stories'),
+    ('Adventure', 'Books about exciting journeys and experiences'),
+    ('Humor', 'Books intended to amuse and entertain');
 
 -- Insert Books (removed duplicate ISBN entry)
 INSERT INTO [Books] ([Title], [Author], [Price], [PublishedDate], [ISBN], [Genre], [Description], [Stock], [Publisher], [Language])
@@ -278,7 +295,18 @@ VALUES
     ('Số Đỏ', 'Vũ Trọng Phụng', 8.00, '1936-01-01', '978-6049631233', 'Fiction', 'Vietnamese satirical classic.', 30, 'Nhà xuất bản Văn Học', 'Vietnamese'),
     ('Những Người Khốn Khổ', 'Victor Hugo', 10.50, '1862-01-01', '978-6042091234', 'Fiction', 'Vietnamese translation of Les Misérables.', 15, 'Nhà xuất bản Văn Học', 'Vietnamese'),
     ('Nhà Giả Kim', 'Paulo Coelho', 9.00, '1996-01-01', '978-6042091235', 'Fiction', 'Vietnamese translation of The Alchemist.', 18, 'Nhà xuất bản Văn Học', 'Vietnamese'),
-    ('Đi Tìm Lẽ Sống', 'Viktor E. Frankl', 10.50, '1946-01-01', '978-6042091236', 'Non-Fiction', 'Vietnamese translation of Man''s Search for Meaning.', 20, 'Nhà xuất bản Tổng hợp', 'Vietnamese');
+    ('Đi Tìm Lẽ Sống', 'Viktor E. Frankl', 10.50, '1946-01-01', '978-6042091236', 'Non-Fiction', 'Vietnamese translation of Man''s Search for Meaning.', 20, 'Nhà xuất bản Tổng hợp', 'Vietnamese'),
+    ('One Piece Vol. 1', 'Eiichiro Oda', 6.99, '1997-07-22', '978-1421504063', 'Manga', 'The beginning of the legendary pirate adventure.', 50, 'Shueisha', 'Japanese'), -- 126
+    ('Batman: Year One', 'Frank Miller', 14.99, '1987-02-01', '978-1401207526', 'Graphic Novel', 'The origin story of Batman.', 20, 'DC Comics', 'English'), -- 127
+    ('It', 'Stephen King', 18.99, '1986-09-15', '978-1501142970', 'Horror', 'A group of children face an ancient evil.', 15, 'Viking', 'English'), -- 128
+    ('Critique of Pure Reason', 'Immanuel Kant', 17.50, '1781-01-01', '978-0486432540', 'Philosophy', 'A foundational philosophical text.', 10, 'Penguin Classics', 'German'), -- 129
+    ('The Prince', 'Niccolò Machiavelli', 9.99, '1532-01-01', '978-0140449150', 'Politics', 'A treatise on political power.', 12, 'Penguin Classics', 'Italian'), -- 130
+    ('Open', 'Andre Agassi', 13.99, '2009-11-09', '978-0307388407', 'Sports', 'Autobiography of tennis legend Andre Agassi.', 8, 'Vintage', 'English'), -- 131
+    ('Bringing Up Bébé', 'Pamela Druckerman', 12.50, '2012-02-07', '978-0143122968', 'Parenting', 'Parenting wisdom from France.', 14, 'Penguin', 'English'), -- 132
+    ('Educating Esmé', 'Esmé Raji Codell', 11.00, '1999-09-01', '978-1565122796', 'Education', 'A teacher''s diary of her first year.', 7, 'Algonquin Books', 'English'), -- 133
+    ('Calvin and Hobbes', 'Bill Watterson', 16.99, '1985-11-18', '978-0836220889', 'Comics', 'Classic comic strip adventures.', 18, 'Andrews McMeel', 'English'), -- 134
+    ('Into Thin Air', 'Jon Krakauer', 14.99, '1997-05-01', '978-0385494786', 'Adventure', 'A personal account of the Mt. Everest disaster.', 9, 'Anchor Books', 'English'), -- 135
+    ('Bossypants', 'Tina Fey', 13.50, '2011-04-05', '978-0316056861', 'Humor', 'A comedic memoir by Tina Fey.', 11, 'Reagan Arthur Books', 'English'); -- 136
 
 -- Insert Orders
 INSERT INTO [Orders] ([UserId], [TotalAmount], [Status], [ShippingAddress], [PaymentMethod], [Notes])
@@ -302,7 +330,13 @@ VALUES
     (20, 33.25, 'Completed', '606 Rue Saint-Paul, Montreal, H2Y 1H2', 'Credit Card', 'Urgent delivery.'),
     (4, 15.99, 'Pending', '12 Baker St, London, England, E1 6AN', 'Cash on Delivery', NULL),
     (5, 29.98, 'Completed', '34 Queen St, Auckland, 1010', 'PayPal', 'Gift wrap requested.'),
-    (6, 22.50, 'Processing', '56 Nanjing Rd, Shanghai, 200000', 'Bank Transfer', 'Include invoice.');
+    (6, 22.50, 'Processing', '56 Nanjing Rd, Shanghai, 200000', 'Bank Transfer', 'Include invoice.'),
+    (21, 13.98, 'Completed', '1 Sakura St, Tokyo, 100-0001', 'Credit Card', 'Deliver after 6pm'),
+    (22, 14.99, 'Pending', '1007 Mountain Dr, Gotham, 07001', 'PayPal', 'Gift wrap please'),
+    (23, 18.99, 'Completed', '13 Elm St, Derry, 04401', 'Cash on Delivery', 'Leave at porch'),
+    (24, 17.50, 'Processing', '42 Königsallee, Königsberg, 23617', 'Bank Transfer', NULL),
+    (25, 13.99, 'Completed', '777 Tennis Ct, Las Vegas, 89109', 'Credit Card', 'Signed copy requested');
+
 
 -- Insert OrderDetails (using valid BookId values)
 INSERT INTO [OrderDetails] ([OrderId], [BookId], [Quantity], [UnitPrice], [Subtotal])

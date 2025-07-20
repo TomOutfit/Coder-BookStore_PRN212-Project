@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLayer.Services
@@ -120,7 +118,7 @@ namespace BusinessLayer.Services
             var role = await _roleRepository.GetRoleByNameAsync(user.Role)
                 ?? throw new InvalidOperationException($"Role {user.Role} does not exist.");
 
-            user.Password = HashPassword(user.Password);
+            // Lưu password dạng plaintext, KHÔNG hash
             user.CreatedAt = DateTime.UtcNow;
             user.UpdatedAt = DateTime.UtcNow;
             await _userRepository.AddAsync(user);
@@ -163,7 +161,8 @@ namespace BusinessLayer.Services
 
             if (!string.IsNullOrWhiteSpace(user.Password))
             {
-                existingUser.Password = HashPassword(user.Password);
+                // Lưu password dạng plaintext, KHÔNG hash
+                existingUser.Password = user.Password;
             }
 
             await _userRepository.UpdateAsync(existingUser);
@@ -227,19 +226,6 @@ namespace BusinessLayer.Services
         public async Task<int> CountAsync(Expression<Func<User, bool>>? filter = null)
         {
             return await _userRepository.CountAsync(filter);
-        }
-
-        private string HashPassword(string password)
-        {
-            using var hmac = new HMACSHA256();
-            var hashedBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-            return Convert.ToBase64String(hashedBytes);
-        }
-
-        private bool VerifyPassword(string password, string hashedPassword)
-        {
-            var hashedInput = HashPassword(password);
-            return hashedInput == hashedPassword;
         }
 
         public User Authenticate(string username, string password)

@@ -5,10 +5,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="600" d:DesignWidth="1000">
-    <Border Effect="{StaticResource CosmoShadow}" Background="{StaticResource CardBrush}" CornerRadius="10" Padding="16" Margin="16">
+    <Border Effect="{StaticResource CosmoShadow}" Background="{StaticResource CardBrush}" CornerRadius="14" Padding="24" Margin="24">
         <StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,16" VerticalAlignment="Center">
-                <TextBlock Text="📚" FontSize="28" Margin="0,0,8,0"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20" VerticalAlignment="Center">
+                <TextBlock Text="📚" FontSize="32" Margin="0,0,10,0"/>
                 <TextBlock Text="Quản lý Sách"
                            Style="{StaticResource PageTitle}">
                     <TextBlock.Foreground>
@@ -19,51 +19,54 @@
                     </TextBlock.Foreground>
                 </TextBlock>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,8">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,12">
                 <Button Style="{StaticResource CosmoButton}"
                         Background="{StaticResource AccentBrush}"
                         Foreground="White"
                         Command="{Binding AddBookCommand}"
-                        Margin="0,0,8,0">
+                        Margin="0,0,10,0" Padding="14,0">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="➕" FontSize="16" Margin="0,0,4,0"/>
-                        <TextBlock Text="Thêm sách"/>
+                        <TextBlock Text="➕" FontSize="18" Margin="0,0,6,0"/>
+                        <TextBlock Text="Thêm sách" FontSize="15"/>
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource CosmoButton}"
                         Background="{StaticResource ForegroundBrush}"
                         Foreground="White"
-                        Command="{Binding RefreshCommand}">
+                        Command="{Binding RefreshCommand}" Padding="14,0">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="🔄" FontSize="16" Margin="0,0,4,0"/>
-                        <TextBlock Text="Làm mới"/>
+                        <TextBlock Text="🔄" FontSize="18" Margin="0,0,6,0"/>
+                        <TextBlock Text="Làm mới" FontSize="15"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8" VerticalAlignment="Center">
-                <TextBlock Text="Số sách/trang:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12" VerticalAlignment="Center">
+                <TextBlock Text="Số sách/trang:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="14"/>
                 <ComboBox Style="{StaticResource ModernComboBox}" Width="60" ItemsSource="{Binding PageSizeOptions}" SelectedItem="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,16,0"/>
                 <Button Style="{StaticResource CosmoButton}" Content="⏮" Command="{Binding FirstPageCommand}" IsEnabled="{Binding CanGoPrevious}" Margin="0,0,4,0"/>
                 <Button Style="{StaticResource CosmoButton}" Content="&lt;" Command="{Binding PrevPageCommand}" IsEnabled="{Binding CanGoPrevious}" Margin="0,0,8,0"/>
-                <TextBlock Text="{Binding CurrentPage}" FontWeight="Bold" VerticalAlignment="Center"/>
-                <TextBlock Text=" / " VerticalAlignment="Center"/>
-                <TextBlock Text="{Binding TotalPages}" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                <Button Style="{StaticResource CosmoButton}" Content="&gt;" Command="{Binding NextPageCommand}" IsEnabled="{Binding CanGoNext}" Margin="0,0,4,0"/>
+                <TextBlock Text="{Binding CurrentPage}" FontWeight="Bold" VerticalAlignment="Center" FontSize="15"/>
+                <TextBlock Text=" / " VerticalAlignment="Center" FontSize="15"/>
+                <TextBlock Text="{Binding TotalPages}" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="15"/>
+                <Button Style="{StaticResource CosmoButton}" Content=">" Command="{Binding NextPageCommand}" IsEnabled="{Binding CanGoNext}" Margin="0,0,4,0"/>
                 <Button Style="{StaticResource CosmoButton}" Content="⏭" Command="{Binding LastPageCommand}" IsEnabled="{Binding CanGoNext}" Margin="0,0,16,0"/>
-                <TextBlock Text="Đến trang:" VerticalAlignment="Center" Margin="0,0,4,0"/>
-                <TextBox Width="40" Text="{Binding GoToPageText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,4,0"/>
-                <Button Style="{StaticResource CosmoButton}" Content="Đi" Command="{Binding GoToPageCommand}"/>
+                <TextBlock Text="Đến trang:" VerticalAlignment="Center" Margin="0,0,4,0" FontSize="14"/>
+                <TextBox Width="40" Text="{Binding GoToPageText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,4,0" FontSize="14"/>
+                <Button Style="{StaticResource CosmoButton}" Content="Đi" Command="{Binding GoToPageCommand}" FontSize="14"/>
             </StackPanel>
             <DataGrid Style="{StaticResource ModernDataGrid}"
                       ItemsSource="{Binding Books}"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
-                      Margin="0,0,0,16"
-                      AlternationCount="2">
+                      Margin="0,0,0,20"
+                      AlternationCount="2"
+                      RowHeight="38"
+                      ColumnHeaderHeight="38">
                 <DataGrid.Resources>
                     <Style TargetType="DataGridRow">
                         <Setter Property="Background" Value="White"/>
                         <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Padding" Value="6,0,6,0"/>
                         <Style.Triggers>
                             <Trigger Property="AlternationIndex" Value="1">
                                 <Setter Property="Background" Value="#F0F7FF"/>
@@ -79,6 +82,7 @@
                         <Setter Property="FontWeight" Value="Bold"/>
                         <Setter Property="FontSize" Value="16"/>
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="38"/>
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
@@ -90,15 +94,15 @@
                     <DataGridTemplateColumn Header="Hành động" Width="160">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button Style="{StaticResource TableActionButton}"
                                             Background="{StaticResource AccentBrush}"
                                             Foreground="White"
                                             ToolTip="Sửa"
                                             Command="{Binding DataContext.EditBookCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                             CommandParameter="{Binding}"
-                                            Margin="0,0,8,0">
-                                        <TextBlock Text="✏ Sửa"/>
+                                            Margin="0,0,10,0">
+                                        <TextBlock Text="✏ Sửa" FontSize="15"/>
                                     </Button>
                                     <Button Style="{StaticResource TableActionButton}"
                                             Background="{StaticResource DangerBrush}"
@@ -106,7 +110,7 @@
                                             ToolTip="Xóa"
                                             Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                             CommandParameter="{Binding}">
-                                        <TextBlock Text="🗑 Xóa"/>
+                                        <TextBlock Text="🗑 Xóa" FontSize="15"/>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
@@ -114,7 +118,6 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <!-- Paging control nếu cần -->
         </StackPanel>
     </Border>
 </UserControl> 

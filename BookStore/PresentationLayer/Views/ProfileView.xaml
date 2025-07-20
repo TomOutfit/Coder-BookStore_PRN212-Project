@@ -6,9 +6,9 @@
              xmlns:helpers="clr-namespace:PresentationLayer.Helpers"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="900">
     <Border CornerRadius="16" Background="{StaticResource CardBrush}" Padding="40" Margin="40" Effect="{StaticResource CosmoShadow}">
-        <StackPanel>
+        <StackPanel Margin="0,0,0,-7">
             <TextBlock Text="👤 Thông tin cá nhân" FontSize="28" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}" Margin="0,0,0,32" HorizontalAlignment="Center"/>
-            <Border Background="#F5F8FA" CornerRadius="10" Padding="24" Margin="0,0,0,24" BorderBrush="#E0E0E0" BorderThickness="1">
+            <Border Background="#F5F8FA" CornerRadius="10" Padding="24" Margin="0,0,0,24" BorderBrush="#E0E0E0" BorderThickness="1" Height="292">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                         <TextBlock Text="Tên đăng nhập:" Width="140" FontWeight="SemiBold" VerticalAlignment="Center"/>

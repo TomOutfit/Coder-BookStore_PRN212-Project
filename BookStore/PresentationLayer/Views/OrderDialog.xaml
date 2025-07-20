@@ -27,12 +27,12 @@
                                   Width="220"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <TextBlock Text="📅" FontSize="18" Margin="0,0,8,0"/>
+                <TextBlock Text="📅" FontSize="18" Margin="0,0,8,0"/>
                         <TextBlock Text="Ngày đặt:" Width="100" VerticalAlignment="Center"/>
                         <DatePicker SelectedDate="{Binding Order.OrderDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="220"/>
-                    </StackPanel>
+            </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <TextBlock Text="💵" FontSize="18" Margin="0,0,8,0"/>
+                <TextBlock Text="💵" FontSize="18" Margin="0,0,8,0"/>
                         <TextBlock Text="Tổng tiền:" Width="100" VerticalAlignment="Center"/>
                         <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Order.TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="220"/>
                     </StackPanel>
@@ -50,13 +50,13 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock Text="💾" FontSize="18" Margin="0,0,6,0"/>
                         <TextBlock Text="Lưu" FontWeight="Bold"/>
-                    </StackPanel>
+            </StackPanel>
                 </Button>
                 <Button Style="{StaticResource CosmoButton}" Width="130" Height="44" Command="{Binding CancelCommand}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock Text="❌" FontSize="18" Margin="0,0,6,0"/>
                         <TextBlock Text="Hủy" FontWeight="Bold"/>
-                    </StackPanel>
+            </StackPanel>
                 </Button>
             </StackPanel>
         </StackPanel>

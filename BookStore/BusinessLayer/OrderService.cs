@@ -42,8 +42,8 @@ namespace BusinessLayer.Services
             }
 
             return await _orderRepository.GetAllAsync(
-                1,
-                int.MaxValue,
+                pageIndex,
+                pageSize,
                 predicate,
                 orderBy: q => q.OrderByDescending(o => o.OrderDate),
                 includeProperties: "User,OrderDetails.Book");
