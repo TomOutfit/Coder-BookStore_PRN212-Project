@@ -32,114 +32,101 @@
             </Grid.ColumnDefinitions>
 
             <!-- Orders List -->
-            <Border Grid.Column="0" 
-                    Background="{StaticResource CardBrush}" 
-                    CornerRadius="12" 
-                    Effect="{StaticResource CosmoShadow}"
-                    Margin="0,0,16,0">
-                <StackPanel Margin="16">
-                    <TextBlock Text="Danh sách đơn hàng" 
-                               FontSize="18" 
-                               FontWeight="SemiBold" 
-                               Foreground="{StaticResource AccentBrush}"
-                               Margin="0,0,0,16"/>
-                    
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="500">
-                        <ItemsControl ItemsSource="{Binding MyOrders}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Background="White" 
-                                            CornerRadius="8" 
-                                            Margin="0,0,0,8" 
-                                            Padding="12"
-                                            BorderBrush="#E5E7EB" 
-                                            BorderThickness="1">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            
-                                            <StackPanel Grid.Column="0">
-                                                <TextBlock Text="{Binding Id, StringFormat='Đơn hàng #{0}'}" 
-                                                           FontWeight="SemiBold" 
-                                                           Foreground="{StaticResource AccentBrush}"/>
-                                                <TextBlock Text="{Binding OrderDate, StringFormat='Ngày đặt: {0:dd/MM/yyyy HH:mm}'}" 
-                                                           FontSize="12" 
-                                                           Foreground="#6B7280" 
-                                                           Margin="0,4,0,0"/>
-                                                <TextBlock Text="{Binding TotalAmount, StringFormat='Tổng tiền: {0:N0} đ'}" 
-                                                           FontSize="12" 
-                                                           Foreground="#059669" 
-                                                           Margin="0,4,0,0"/>
-                                                <TextBlock Text="{Binding Status}" 
-                                                           FontSize="12" 
-                                                           Foreground="#DC2626" 
-                                                           Margin="0,4,0,0"/>
-                                            </StackPanel>
-                                            
-                                            <Button Grid.Column="1" 
-                                                    Style="{StaticResource CosmoButton}" 
-                                                    Content="Xem chi tiết" 
-                                                    Command="{Binding DataContext.ViewOrderDetailsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                    CommandParameter="{Binding}"
-                                                    VerticalAlignment="Center"/>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </StackPanel>
-            </Border>
-
-            <!-- Order Details -->
-            <Border Grid.Column="1" 
-                    Background="{StaticResource CardBrush}" 
-                    CornerRadius="12" 
-                    Effect="{StaticResource CosmoShadow}">
-                <StackPanel Margin="16">
-                    <TextBlock Text="Chi tiết đơn hàng" 
-                               FontSize="18" 
-                               FontWeight="SemiBold" 
-                               Foreground="{StaticResource AccentBrush}"
-                               Margin="0,0,0,16"/>
-                    
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="500">
-                        <ItemsControl ItemsSource="{Binding OrderDetails}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Background="White" 
-                                            CornerRadius="8" 
-                                            Margin="0,0,0,8" 
-                                            Padding="12"
-                                            BorderBrush="#E5E7EB" 
-                                            BorderThickness="1">
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Book.Title}" 
+            <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                <TextBlock Text="Danh sách đơn hàng" 
+                           FontSize="18" 
+                           FontWeight="SemiBold" 
+                           Foreground="{StaticResource AccentBrush}"
+                           Margin="0,0,0,16"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="500">
+                    <ItemsControl ItemsSource="{Binding MyOrders}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="White" 
+                                        CornerRadius="10" 
+                                        Margin="0,0,0,12" 
+                                        Padding="14"
+                                        BorderBrush="#E5E7EB" 
+                                        BorderThickness="1"
+                                        Effect="{StaticResource CosmoShadow}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="{Binding Id, StringFormat='Đơn hàng #{0}'}" 
                                                        FontWeight="SemiBold" 
                                                        Foreground="{StaticResource AccentBrush}"/>
-                                            <TextBlock Text="{Binding Quantity, StringFormat='Số lượng: {0}'}" 
+                                            <TextBlock Text="{Binding OrderDate, StringFormat='Ngày đặt: {0:dd/MM/yyyy HH:mm}'}" 
                                                        FontSize="12" 
                                                        Foreground="#6B7280" 
                                                        Margin="0,4,0,0"/>
-                                            <TextBlock Text="{Binding UnitPrice, StringFormat='Đơn giá: {0:N0} đ'}" 
+                                            <TextBlock Text="{Binding TotalAmount, StringFormat='Tổng tiền: {0:N2} đ'}" 
                                                        FontSize="12" 
                                                        Foreground="#059669" 
                                                        Margin="0,4,0,0"/>
-                                            <TextBlock Text="{Binding TotalPrice, StringFormat='Thành tiền: {0:N0} đ'}" 
+                                            <TextBlock Text="{Binding Status}" 
                                                        FontSize="12" 
-                                                       FontWeight="SemiBold" 
                                                        Foreground="#DC2626" 
                                                        Margin="0,4,0,0"/>
                                         </StackPanel>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </StackPanel>
-            </Border>
+                                        <Button Grid.Column="1" 
+                                                Style="{StaticResource CosmoButton}" 
+                                                Content="Xem chi tiết" 
+                                                Command="{Binding DataContext.ViewOrderDetailsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}"
+                                                VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+
+            <!-- Order Details -->
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Chi tiết đơn hàng" 
+                           FontSize="18" 
+                           FontWeight="SemiBold" 
+                           Foreground="{StaticResource AccentBrush}"
+                           Margin="0,0,0,16"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="500">
+                    <ItemsControl ItemsSource="{Binding OrderDetails}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="White" 
+                                        CornerRadius="10" 
+                                        Margin="0,0,0,12" 
+                                        Padding="14"
+                                        BorderBrush="#E5E7EB" 
+                                        BorderThickness="1"
+                                        Effect="{StaticResource CosmoShadow}">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Book.Title}" 
+                                                   FontWeight="SemiBold" 
+                                                   Foreground="{StaticResource AccentBrush}"/>
+                                        <TextBlock Text="{Binding Quantity, StringFormat='Số lượng: {0}'}" 
+                                                   FontSize="12" 
+                                                   Foreground="#6B7280" 
+                                                   Margin="0,4,0,0"/>
+                                        <TextBlock Text="{Binding UnitPrice, StringFormat='Đơn giá: {0:N2} đ'}" 
+                                                   FontSize="12" 
+                                                   Foreground="#059669" 
+                                                   Margin="0,4,0,0"/>
+                                        <TextBlock Text="{Binding TotalPrice, StringFormat='Thành tiền: {0:N2} đ'}" 
+                                                   FontSize="12" 
+                                                   FontWeight="SemiBold" 
+                                                   Foreground="#DC2626" 
+                                                   Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl> 

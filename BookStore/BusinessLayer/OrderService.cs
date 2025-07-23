@@ -88,12 +88,24 @@ namespace BusinessLayer.Services
                 includeProperties: "User,OrderDetails.Book");
         }
 
+        public async Task<bool> AddOrderAsync(Order order)
+        {
+            if (order == null) throw new ArgumentNullException(nameof(order));
+            if (order.OrderDetails == null || !order.OrderDetails.Any())
+                throw new ArgumentException("Order must have at least one detail.", nameof(order));
+
+            // Tính lại tổng tiền từ OrderDetails
+            order.TotalAmount = order.OrderDetails.Sum(d => d.Quantity * (d.Book?.Price ?? 0));
+            order.CreatedAt = DateTime.UtcNow;
+            order.UpdatedAt = DateTime.UtcNow;
+            await _orderRepository.AddAsync(order);
+            return await _orderRepository.SaveChangesAsync() > 0;
+        }
+
         public async Task<bool> UpdateOrderAsync(Order order)
         {
             if (order == null) throw new ArgumentNullException(nameof(order));
-            if (order.TotalAmount < 0) throw new ArgumentException("Total amount cannot be negative.", nameof(order.TotalAmount));
-
-            var existingOrder = await _orderRepository.GetByIdAsync(order.Id, "OrderDetails")
+            var existingOrder = await _orderRepository.GetByIdAsync(order.Id, "OrderDetails.Book")
                 ?? throw new KeyNotFoundException($"Order with ID {order.Id} not found.");
 
             existingOrder.UserId = order.UserId;
@@ -101,7 +113,8 @@ namespace BusinessLayer.Services
             existingOrder.ShippingAddress = order.ShippingAddress;
             existingOrder.PaymentMethod = order.PaymentMethod;
             existingOrder.Notes = order.Notes;
-            existingOrder.TotalAmount = order.TotalAmount;
+            // Luôn tính lại tổng tiền từ OrderDetails
+            existingOrder.TotalAmount = existingOrder.OrderDetails.Sum(d => d.Quantity * (d.Book?.Price ?? 0));
             existingOrder.UpdatedAt = DateTime.UtcNow;
 
             await _orderRepository.UpdateAsync(existingOrder);

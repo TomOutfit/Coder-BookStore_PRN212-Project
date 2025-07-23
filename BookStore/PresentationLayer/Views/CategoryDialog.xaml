@@ -1,49 +1,28 @@
 <Window x:Class="PresentationLayer.Views.CategoryDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Thông tin Thể loại" Height="420" Width="546" WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Title="Thông tin Thể loại" Height="340" Width="480" WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow" Background="{StaticResource CardBrush}">
-    <Border CornerRadius="12" Background="{StaticResource CardBrush}" Padding="32" Margin="16" Effect="{StaticResource CosmoShadow}">
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,24" HorizontalAlignment="Center">
-                <TextBlock Text="🏷️" FontSize="32" Margin="0,0,10,0"/>
-                <TextBlock Text="Thông tin Thể loại" Style="{StaticResource PageTitle}">
-                    <TextBlock.Foreground>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                            <GradientStop Color="#06B6D4" Offset="0"/>
-                            <GradientStop Color="#4F46E5" Offset="1"/>
-                        </LinearGradientBrush>
-                    </TextBlock.Foreground>
-                </TextBlock>
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="🏷️ Thông tin Thể loại" Style="{StaticResource PageTitle}" Margin="0,0,0,24" HorizontalAlignment="Center" Grid.Row="0"/>
+        <StackPanel Grid.Row="1" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
+                <TextBlock Text="Tên chủ đề:" Width="120" VerticalAlignment="Center"/>
+                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Category.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="220"/>
             </StackPanel>
-            <Border Background="#E0F7FA" CornerRadius="8" Padding="18" Margin="0,0,0,16">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                        <TextBlock Text="🏷️" FontSize="18" Margin="0,0,8,0"/>
-                        <TextBlock Text="Tên thể loại:" Width="100" VerticalAlignment="Center"/>
-                        <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Category.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="180"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                        <TextBlock Text="📝" FontSize="18" Margin="0,0,8,0"/>
-                        <TextBlock Text="Mô tả:" Width="100" VerticalAlignment="Center"/>
-                        <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Category.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="180" Height="60" AcceptsReturn="True"/>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,24,0,0">
-                <Button Style="{StaticResource CosmoButton}" Width="120" Height="44" Margin="0,0,16,0" Command="{Binding SaveCommand}">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Text="💾" FontSize="18" Margin="0,0,6,0"/>
-                        <TextBlock Text="Lưu" FontWeight="Bold"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource CosmoButton}" Width="120" Height="44" Command="{Binding CancelCommand}">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Text="❌" FontSize="18" Margin="0,0,6,0"/>
-                        <TextBlock Text="Hủy" FontWeight="Bold"/>
-                    </StackPanel>
-                </Button>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                <TextBlock Text="Mô tả:" Width="120" VerticalAlignment="Center"/>
+                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding Category.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="220"/>
             </StackPanel>
         </StackPanel>
-    </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,32,0,0" Grid.Row="2">
+            <Button Style="{StaticResource CosmoButton}" Content="✔ Lưu" Command="{Binding SaveCommand}" Width="110" Margin="0,0,12,0"/>
+            <Button Style="{StaticResource CosmoButton}" Content="✖ Hủy" Command="{Binding CancelCommand}" Width="110"/>
+        </StackPanel>
+    </Grid>
 </Window> 
