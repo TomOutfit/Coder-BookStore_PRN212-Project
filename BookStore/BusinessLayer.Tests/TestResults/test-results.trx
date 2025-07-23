@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="3c3b88f2-7bdf-481e-8e47-34c9b6d51152" name="USER@TOMOUTFITPC 2025-07-23 15:52:10" runUser="TOMOUTFITPC\USER" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-07-23T15:52:10.1512217+07:00" queuing="2025-07-23T15:52:10.1512221+07:00" start="2025-07-23T15:52:09.5878547+07:00" finish="2025-07-23T15:52:10.1975469+07:00" />
+  <TestSettings name="default" id="5f67e5fc-ddac-4e63-a815-23abff819b66">
+    <Deployment runDeploymentRoot="USER_TOMOUTFITPC_2025-07-23_15_52_10" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="fdd2e7a9-68e3-4acc-85c0-9760eea507ac" testId="472501b7-ea79-70d2-6bf2-9c0de295bc29" testName="BookServiceTests.GetBookByISBNAsync_ShouldReturnBook_WhenBookExists" computerName="TOMOUTFITPC" duration="00:00:00.0499778" startTime="2025-07-23T15:52:10.0973023+07:00" endTime="2025-07-23T15:52:10.0973024+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fdd2e7a9-68e3-4acc-85c0-9760eea507ac" />
+    <UnitTestResult executionId="f18c2a25-b2d5-402f-bf32-3798595cda89" testId="890082a2-a5be-e185-4410-cfe3f5f1fa70" testName="BookServiceTests.AddBookAsync_ShouldReturnTrue_WhenBookIsValid" computerName="TOMOUTFITPC" duration="00:00:00.0045396" startTime="2025-07-23T15:52:10.0994033+07:00" endTime="2025-07-23T15:52:10.0994035+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f18c2a25-b2d5-402f-bf32-3798595cda89" />
+    <UnitTestResult executionId="0fbb1a6b-17c9-4009-9bcc-9f5791ecbd5b" testId="242c066e-48e4-9f1b-4ebf-296682e007d7" testName="UserServiceTests.GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty(username: &quot;&quot;)" computerName="TOMOUTFITPC" duration="00:00:00.0000459" startTime="2025-07-23T15:52:10.0981064+07:00" endTime="2025-07-23T15:52:10.0981065+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0fbb1a6b-17c9-4009-9bcc-9f5791ecbd5b" />
+    <UnitTestResult executionId="9e64ce4a-073d-4a1b-9e23-f03d14759e2f" testId="10851d2d-23c1-abd0-22fa-1474c9fee085" testName="OrderServiceTests.AddOrderAsync_ShouldReturnTrue_WhenOrderIsValid" computerName="TOMOUTFITPC" duration="00:00:00.0585882" startTime="2025-07-23T15:52:10.1012921+07:00" endTime="2025-07-23T15:52:10.1012923+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9e64ce4a-073d-4a1b-9e23-f03d14759e2f" />
+    <UnitTestResult executionId="deeb6810-5b55-46fd-aed8-49c97b47e6f7" testId="9544f73a-8446-572a-c845-3ba785c0bf75" testName="BookServiceTests.AddBookAsync_ShouldThrowArgumentException_WhenISBNIsNullOrEmpty(isbn: &quot;&quot;)" computerName="TOMOUTFITPC" duration="00:00:00.0001923" startTime="2025-07-23T15:52:10.1289824+07:00" endTime="2025-07-23T15:52:10.1289824+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="deeb6810-5b55-46fd-aed8-49c97b47e6f7" />
+    <UnitTestResult executionId="ce945144-4d46-46ec-83bb-b6cdcef4522f" testId="0d36032a-79ef-7005-2b0b-9fc8524e92c0" testName="OrderServiceTests.AddOrderAsync_ShouldThrowArgumentException_WhenOrderDetailsIsNullOrEmpty" computerName="TOMOUTFITPC" duration="00:00:00.0005766" startTime="2025-07-23T15:52:10.1255213+07:00" endTime="2025-07-23T15:52:10.1255213+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ce945144-4d46-46ec-83bb-b6cdcef4522f" />
+    <UnitTestResult executionId="40d35288-1f1c-440b-b21e-b3065bdcdb3a" testId="06fe3bd2-8d9e-6974-dc3f-153d2f13cdc7" testName="BookServiceTests.AddBookAsync_ShouldThrowArgumentException_WhenISBNExists" computerName="TOMOUTFITPC" duration="00:00:00.0015952" startTime="2025-07-23T15:52:10.1288381+07:00" endTime="2025-07-23T15:52:10.1288384+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="40d35288-1f1c-440b-b21e-b3065bdcdb3a">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Throws() Failure: Exception type was not an exact match&#xD;
+Expected: typeof(System.ArgumentException)&#xD;
+Actual:   typeof(System.InvalidOperationException)&#xD;
+---- System.InvalidOperationException : Book with ISBN 1234567890 already exists.</Message>
+          <StackTrace>   at BookServiceTests.AddBookAsync_ShouldThrowArgumentException_WhenISBNExists() in D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\BookServiceTests.cs:line 31&#xD;
+--- End of stack trace from previous location ---&#xD;
+----- Inner Stack Trace -----&#xD;
+   at BusinessLayer.Services.BookService.AddBookAsync(Book book) in D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer\BookService.cs:line 78</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7d6c9554-f419-4174-bb5c-8aa8fc6e12af" testId="43491845-d18e-c9eb-3e4a-63f987ea1d0c" testName="UserServiceTests.GetUserByUsernameAsync_ShouldReturnNull_WhenUserDoesNotExist" computerName="TOMOUTFITPC" duration="00:00:00.0007300" startTime="2025-07-23T15:52:10.0982133+07:00" endTime="2025-07-23T15:52:10.0982133+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7d6c9554-f419-4174-bb5c-8aa8fc6e12af" />
+    <UnitTestResult executionId="8cf23658-fed9-4544-98f1-3b3013f97a43" testId="0fc20690-55ac-e8c2-6b10-450150017147" testName="BookServiceTests.GetBookByISBNAsync_ShouldReturnNull_WhenBookDoesNotExist" computerName="TOMOUTFITPC" duration="00:00:00.0005905" startTime="2025-07-23T15:52:10.1290059+07:00" endTime="2025-07-23T15:52:10.1290059+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8cf23658-fed9-4544-98f1-3b3013f97a43" />
+    <UnitTestResult executionId="bb673fa9-8d6d-4fd0-8a66-aa862efa5e03" testId="7a34f3de-4571-1017-f38a-58fdae6cc58b" testName="OrderServiceTests.AddOrderAsync_ShouldThrowArgumentNullException_WhenOrderIsNull" computerName="TOMOUTFITPC" duration="00:00:00.0008604" startTime="2025-07-23T15:52:10.1254970+07:00" endTime="2025-07-23T15:52:10.1254970+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bb673fa9-8d6d-4fd0-8a66-aa862efa5e03" />
+    <UnitTestResult executionId="6ca3f493-3ca5-4009-9cf5-95806eb73a97" testId="4b4cf670-38a0-b1e4-c19b-9dd3eb23f34b" testName="UserServiceTests.GetUserByUsernameAsync_ShouldReturnUser_WhenUserExists" computerName="TOMOUTFITPC" duration="00:00:00.0011116" startTime="2025-07-23T15:52:10.0981323+07:00" endTime="2025-07-23T15:52:10.0981323+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6ca3f493-3ca5-4009-9cf5-95806eb73a97" />
+    <UnitTestResult executionId="d4d64734-f582-471c-9a5f-a6c845a797d5" testId="fd25c906-f35a-cead-d602-d63e54169762" testName="UserServiceTests.GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty(username: &quot;   &quot;)" computerName="TOMOUTFITPC" duration="00:00:00.0501685" startTime="2025-07-23T15:52:10.0953344+07:00" endTime="2025-07-23T15:52:10.0953588+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d4d64734-f582-471c-9a5f-a6c845a797d5" />
+    <UnitTestResult executionId="eef5934f-6038-4235-ad1a-542c6d3fcca0" testId="3d946212-0073-effc-5afb-6a2e9246346e" testName="UserServiceTests.GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty(username: &quot;__NULL__&quot;)" computerName="TOMOUTFITPC" duration="00:00:00.0008081" startTime="2025-07-23T15:52:10.0980850+07:00" endTime="2025-07-23T15:52:10.0980851+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eef5934f-6038-4235-ad1a-542c6d3fcca0" />
+    <UnitTestResult executionId="95c1c460-8d51-4be4-bca3-a76fcc38be3f" testId="12a6f9b2-549c-022c-ea57-d3658ef5501c" testName="OrderServiceTests.GetOrderByIdAsync_ShouldReturnOrder_WhenOrderExists" computerName="TOMOUTFITPC" duration="00:00:00.0044154" startTime="2025-07-23T15:52:10.1253521+07:00" endTime="2025-07-23T15:52:10.1253523+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="95c1c460-8d51-4be4-bca3-a76fcc38be3f" />
+    <UnitTestResult executionId="ff358ffe-9793-4e68-959f-670e6ac42bdf" testId="1ddd030d-204f-6f82-0938-ec1ab826d14b" testName="BookServiceTests.AddBookAsync_ShouldThrowArgumentException_WhenISBNIsNullOrEmpty(isbn: &quot;__NULL__&quot;)" computerName="TOMOUTFITPC" duration="00:00:00.0005192" startTime="2025-07-23T15:52:10.1289602+07:00" endTime="2025-07-23T15:52:10.1289603+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ff358ffe-9793-4e68-959f-670e6ac42bdf" />
+    <UnitTestResult executionId="3fab2ed7-cb0b-48fc-a3c0-c2c2985e71cf" testId="7da35cd9-e80a-7481-1ee8-6d49724d746c" testName="OrderServiceTests.GetOrderByIdAsync_ShouldThrowArgumentException_WhenIdIsZeroOrNegative" computerName="TOMOUTFITPC" duration="00:00:00.0004742" startTime="2025-07-23T15:52:10.1255482+07:00" endTime="2025-07-23T15:52:10.1255483+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3fab2ed7-cb0b-48fc-a3c0-c2c2985e71cf" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="BookServiceTests.GetBookByISBNAsync_ShouldReturnNull_WhenBookDoesNotExist" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="0fc20690-55ac-e8c2-6b10-450150017147">
+      <Execution id="8cf23658-fed9-4544-98f1-3b3013f97a43" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="BookServiceTests" name="GetBookByISBNAsync_ShouldReturnNull_WhenBookDoesNotExist" />
+    </UnitTest>
+    <UnitTest name="BookServiceTests.GetBookByISBNAsync_ShouldReturnBook_WhenBookExists" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="472501b7-ea79-70d2-6bf2-9c0de295bc29">
+      <Execution id="fdd2e7a9-68e3-4acc-85c0-9760eea507ac" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="BookServiceTests" name="GetBookByISBNAsync_ShouldReturnBook_WhenBookExists" />
+    </UnitTest>
+    <UnitTest name="OrderServiceTests.GetOrderByIdAsync_ShouldThrowArgumentException_WhenIdIsZeroOrNegative" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="7da35cd9-e80a-7481-1ee8-6d49724d746c">
+      <Execution id="3fab2ed7-cb0b-48fc-a3c0-c2c2985e71cf" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="OrderServiceTests" name="GetOrderByIdAsync_ShouldThrowArgumentException_WhenIdIsZeroOrNegative" />
+    </UnitTest>
+    <UnitTest name="UserServiceTests.GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty(username: &quot;__NULL__&quot;)" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="3d946212-0073-effc-5afb-6a2e9246346e">
+      <Execution id="eef5934f-6038-4235-ad1a-542c6d3fcca0" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="UserServiceTests" name="GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty" />
+    </UnitTest>
+    <UnitTest name="UserServiceTests.GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty(username: &quot;   &quot;)" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="fd25c906-f35a-cead-d602-d63e54169762">
+      <Execution id="d4d64734-f582-471c-9a5f-a6c845a797d5" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="UserServiceTests" name="GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty" />
+    </UnitTest>
+    <UnitTest name="BookServiceTests.AddBookAsync_ShouldReturnTrue_WhenBookIsValid" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="890082a2-a5be-e185-4410-cfe3f5f1fa70">
+      <Execution id="f18c2a25-b2d5-402f-bf32-3798595cda89" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="BookServiceTests" name="AddBookAsync_ShouldReturnTrue_WhenBookIsValid" />
+    </UnitTest>
+    <UnitTest name="UserServiceTests.GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty(username: &quot;&quot;)" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="242c066e-48e4-9f1b-4ebf-296682e007d7">
+      <Execution id="0fbb1a6b-17c9-4009-9bcc-9f5791ecbd5b" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="UserServiceTests" name="GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty" />
+    </UnitTest>
+    <UnitTest name="OrderServiceTests.GetOrderByIdAsync_ShouldReturnOrder_WhenOrderExists" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="12a6f9b2-549c-022c-ea57-d3658ef5501c">
+      <Execution id="95c1c460-8d51-4be4-bca3-a76fcc38be3f" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="OrderServiceTests" name="GetOrderByIdAsync_ShouldReturnOrder_WhenOrderExists" />
+    </UnitTest>
+    <UnitTest name="UserServiceTests.GetUserByUsernameAsync_ShouldReturnNull_WhenUserDoesNotExist" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="43491845-d18e-c9eb-3e4a-63f987ea1d0c">
+      <Execution id="7d6c9554-f419-4174-bb5c-8aa8fc6e12af" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="UserServiceTests" name="GetUserByUsernameAsync_ShouldReturnNull_WhenUserDoesNotExist" />
+    </UnitTest>
+    <UnitTest name="BookServiceTests.AddBookAsync_ShouldThrowArgumentException_WhenISBNIsNullOrEmpty(isbn: &quot;&quot;)" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="9544f73a-8446-572a-c845-3ba785c0bf75">
+      <Execution id="deeb6810-5b55-46fd-aed8-49c97b47e6f7" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="BookServiceTests" name="AddBookAsync_ShouldThrowArgumentException_WhenISBNIsNullOrEmpty" />
+    </UnitTest>
+    <UnitTest name="OrderServiceTests.AddOrderAsync_ShouldReturnTrue_WhenOrderIsValid" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="10851d2d-23c1-abd0-22fa-1474c9fee085">
+      <Execution id="9e64ce4a-073d-4a1b-9e23-f03d14759e2f" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="OrderServiceTests" name="AddOrderAsync_ShouldReturnTrue_WhenOrderIsValid" />
+    </UnitTest>
+    <UnitTest name="OrderServiceTests.AddOrderAsync_ShouldThrowArgumentException_WhenOrderDetailsIsNullOrEmpty" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="0d36032a-79ef-7005-2b0b-9fc8524e92c0">
+      <Execution id="ce945144-4d46-46ec-83bb-b6cdcef4522f" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="OrderServiceTests" name="AddOrderAsync_ShouldThrowArgumentException_WhenOrderDetailsIsNullOrEmpty" />
+    </UnitTest>
+    <UnitTest name="OrderServiceTests.AddOrderAsync_ShouldThrowArgumentNullException_WhenOrderIsNull" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="7a34f3de-4571-1017-f38a-58fdae6cc58b">
+      <Execution id="bb673fa9-8d6d-4fd0-8a66-aa862efa5e03" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="OrderServiceTests" name="AddOrderAsync_ShouldThrowArgumentNullException_WhenOrderIsNull" />
+    </UnitTest>
+    <UnitTest name="UserServiceTests.GetUserByUsernameAsync_ShouldReturnUser_WhenUserExists" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="4b4cf670-38a0-b1e4-c19b-9dd3eb23f34b">
+      <Execution id="6ca3f493-3ca5-4009-9cf5-95806eb73a97" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="UserServiceTests" name="GetUserByUsernameAsync_ShouldReturnUser_WhenUserExists" />
+    </UnitTest>
+    <UnitTest name="BookServiceTests.AddBookAsync_ShouldThrowArgumentException_WhenISBNExists" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="06fe3bd2-8d9e-6974-dc3f-153d2f13cdc7">
+      <Execution id="40d35288-1f1c-440b-b21e-b3065bdcdb3a" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="BookServiceTests" name="AddBookAsync_ShouldThrowArgumentException_WhenISBNExists" />
+    </UnitTest>
+    <UnitTest name="BookServiceTests.AddBookAsync_ShouldThrowArgumentException_WhenISBNIsNullOrEmpty(isbn: &quot;__NULL__&quot;)" storage="d:\coder-bookstore_prn212-project\bookstore\businesslayer.tests\bin\debug\net9.0\businesslayer.tests.dll" id="1ddd030d-204f-6f82-0938-ec1ab826d14b">
+      <Execution id="ff358ffe-9793-4e68-959f-670e6ac42bdf" />
+      <TestMethod codeBase="D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\bin\Debug\net9.0\BusinessLayer.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="BookServiceTests" name="AddBookAsync_ShouldThrowArgumentException_WhenISBNIsNullOrEmpty" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="472501b7-ea79-70d2-6bf2-9c0de295bc29" executionId="fdd2e7a9-68e3-4acc-85c0-9760eea507ac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="890082a2-a5be-e185-4410-cfe3f5f1fa70" executionId="f18c2a25-b2d5-402f-bf32-3798595cda89" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="242c066e-48e4-9f1b-4ebf-296682e007d7" executionId="0fbb1a6b-17c9-4009-9bcc-9f5791ecbd5b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="10851d2d-23c1-abd0-22fa-1474c9fee085" executionId="9e64ce4a-073d-4a1b-9e23-f03d14759e2f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9544f73a-8446-572a-c845-3ba785c0bf75" executionId="deeb6810-5b55-46fd-aed8-49c97b47e6f7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0d36032a-79ef-7005-2b0b-9fc8524e92c0" executionId="ce945144-4d46-46ec-83bb-b6cdcef4522f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="06fe3bd2-8d9e-6974-dc3f-153d2f13cdc7" executionId="40d35288-1f1c-440b-b21e-b3065bdcdb3a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="43491845-d18e-c9eb-3e4a-63f987ea1d0c" executionId="7d6c9554-f419-4174-bb5c-8aa8fc6e12af" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0fc20690-55ac-e8c2-6b10-450150017147" executionId="8cf23658-fed9-4544-98f1-3b3013f97a43" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7a34f3de-4571-1017-f38a-58fdae6cc58b" executionId="bb673fa9-8d6d-4fd0-8a66-aa862efa5e03" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4b4cf670-38a0-b1e4-c19b-9dd3eb23f34b" executionId="6ca3f493-3ca5-4009-9cf5-95806eb73a97" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fd25c906-f35a-cead-d602-d63e54169762" executionId="d4d64734-f582-471c-9a5f-a6c845a797d5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3d946212-0073-effc-5afb-6a2e9246346e" executionId="eef5934f-6038-4235-ad1a-542c6d3fcca0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="12a6f9b2-549c-022c-ea57-d3658ef5501c" executionId="95c1c460-8d51-4be4-bca3-a76fcc38be3f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1ddd030d-204f-6f82-0938-ec1ab826d14b" executionId="ff358ffe-9793-4e68-959f-670e6ac42bdf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7da35cd9-e80a-7481-1ee8-6d49724d746c" executionId="3fab2ed7-cb0b-48fc-a3c0-c2c2985e71cf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="16" executed="16" passed="15" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 9.0.7)&#xD;
+[xUnit.net 00:00:00.05]   Discovering: BusinessLayer.Tests&#xD;
+[xUnit.net 00:00:00.09]   Discovered:  BusinessLayer.Tests&#xD;
+[xUnit.net 00:00:00.09]   Starting:    BusinessLayer.Tests&#xD;
+[xUnit.net 00:00:00.21]       Assert.Throws() Failure: Exception type was not an exact match&#xD;
+[xUnit.net 00:00:00.21]       Expected: typeof(System.ArgumentException)&#xD;
+[xUnit.net 00:00:00.21]       Actual:   typeof(System.InvalidOperationException)&#xD;
+[xUnit.net 00:00:00.21]       ---- System.InvalidOperationException : Book with ISBN 1234567890 already exists.&#xD;
+[xUnit.net 00:00:00.21]       Stack Trace:&#xD;
+[xUnit.net 00:00:00.21]         D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer.Tests\BookServiceTests.cs(31,0): at BookServiceTests.AddBookAsync_ShouldThrowArgumentException_WhenISBNExists()&#xD;
+[xUnit.net 00:00:00.21]         --- End of stack trace from previous location ---&#xD;
+[xUnit.net 00:00:00.21]         ----- Inner Stack Trace -----&#xD;
+[xUnit.net 00:00:00.21]         D:\Coder-BookStore_PRN212-Project\BookStore\BusinessLayer\BookService.cs(78,0): at BusinessLayer.Services.BookService.AddBookAsync(Book book)&#xD;
+[xUnit.net 00:00:00.21]   Finished:    BusinessLayer.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="TOMOUTFITPC" outcome="Error" timestamp="2025-07-23T15:52:10.1569082+07:00">
+        <Text>[xUnit.net 00:00:00.21]     BookServiceTests.AddBookAsync_ShouldThrowArgumentException_WhenISBNExists [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

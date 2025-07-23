@@ -26,14 +26,14 @@ public class UserServiceTests
     {
         var mockRepo = new Mock<IUserRepository>();
         var mockRoleRepo = new Mock<IRoleRepository>();
-        mockRepo.Setup(r => r.GetUserByUsernameAsync("notfound")).ReturnsAsync((User)null);
+        mockRepo.Setup(r => r.GetUserByUsernameAsync("notfound")).ReturnsAsync((User?)null);
         var service = new UserService(mockRepo.Object, mockRoleRepo.Object);
         var user = await service.GetUserByUsernameAsync("notfound");
         Assert.Null(user);
     }
 
     [Theory]
-    [InlineData(null)]
+    [InlineData("__NULL__")]
     [InlineData("")]
     [InlineData("   ")]
     public async Task GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty(string username)
@@ -41,6 +41,7 @@ public class UserServiceTests
         var mockRepo = new Mock<IUserRepository>();
         var mockRoleRepo = new Mock<IRoleRepository>();
         var service = new UserService(mockRepo.Object, mockRoleRepo.Object);
-        await Assert.ThrowsAsync<ArgumentException>(() => service.GetUserByUsernameAsync(username));
+        var input = username == "__NULL__" ? null : username;
+        await Assert.ThrowsAsync<ArgumentException>(() => service.GetUserByUsernameAsync(input));
     }
 } 

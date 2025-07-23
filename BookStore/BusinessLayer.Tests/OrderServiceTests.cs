@@ -36,7 +36,7 @@ public class OrderServiceTests
         var mockOrderRepo = new Mock<IOrderRepository>();
         var mockOrderDetailRepo = new Mock<IOrderDetailRepository>();
         var service = new OrderService(mockOrderRepo.Object, mockOrderDetailRepo.Object);
-        await Assert.ThrowsAsync<ArgumentNullException>(() => service.AddOrderAsync(null));
+        await Assert.ThrowsAsync<ArgumentNullException>(() => service.AddOrderAsync((Order?)null!));
     }
 
     [Fact]
@@ -56,7 +56,7 @@ public class OrderServiceTests
     {
         var mockOrderRepo = new Mock<IOrderRepository>();
         var mockOrderDetailRepo = new Mock<IOrderDetailRepository>();
-        mockOrderRepo.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(new Order { Id = 1 });
+        mockOrderRepo.Setup(r => r.GetByIdAsync(1, It.IsAny<string>())).ReturnsAsync((Order?)new Order { Id = 1 });
         var service = new OrderService(mockOrderRepo.Object, mockOrderDetailRepo.Object);
         var order = await service.GetOrderByIdAsync(1);
         Assert.NotNull(order);
