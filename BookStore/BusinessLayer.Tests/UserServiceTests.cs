@@ -9,36 +9,26 @@ using System;
 public class UserServiceTests
 {
     [Fact]
-    public async Task GetUserByUsernameAsync_ReturnsUser_WhenUserExists()
+    public async Task GetUserByUsernameAsync_ShouldReturnUser_WhenUserExists()
     {
-        // Arrange
         var mockRepo = new Mock<IUserRepository>();
         var mockRoleRepo = new Mock<IRoleRepository>();
         mockRepo.Setup(r => r.GetUserByUsernameAsync("john.smith"))
                 .ReturnsAsync(new User { Username = "john.smith", FirstName = "John" });
         var service = new UserService(mockRepo.Object, mockRoleRepo.Object);
-
-        // Act
         var user = await service.GetUserByUsernameAsync("john.smith");
-
-        // Assert
         Assert.NotNull(user);
         Assert.Equal("John", user.FirstName);
     }
 
     [Fact]
-    public async Task GetUserByUsernameAsync_ReturnsNull_WhenUserDoesNotExist()
+    public async Task GetUserByUsernameAsync_ShouldReturnNull_WhenUserDoesNotExist()
     {
-        // Arrange
         var mockRepo = new Mock<IUserRepository>();
         var mockRoleRepo = new Mock<IRoleRepository>();
         mockRepo.Setup(r => r.GetUserByUsernameAsync("notfound")).ReturnsAsync((User)null);
         var service = new UserService(mockRepo.Object, mockRoleRepo.Object);
-
-        // Act
         var user = await service.GetUserByUsernameAsync("notfound");
-
-        // Assert
         Assert.Null(user);
     }
 
@@ -46,14 +36,11 @@ public class UserServiceTests
     [InlineData(null)]
     [InlineData("")]
     [InlineData("   ")]
-    public async Task GetUserByUsernameAsync_ThrowsArgumentException_WhenUsernameIsNullOrEmpty(string username)
+    public async Task GetUserByUsernameAsync_ShouldThrowArgumentException_WhenUsernameIsNullOrEmpty(string username)
     {
-        // Arrange
         var mockRepo = new Mock<IUserRepository>();
         var mockRoleRepo = new Mock<IRoleRepository>();
         var service = new UserService(mockRepo.Object, mockRoleRepo.Object);
-
-        // Act & Assert
         await Assert.ThrowsAsync<ArgumentException>(() => service.GetUserByUsernameAsync(username));
     }
 } 
