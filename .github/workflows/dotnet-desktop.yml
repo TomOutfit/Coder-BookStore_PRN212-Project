@@ -17,11 +17,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-<<<<<<< HEAD:BookStore/.github/workflows/dotnet.yml
         dotnet-version: '9.0.x'
-=======
-        dotnet-version: 9.0.x
->>>>>>> c1fdede0c6ec61686780a37c5d016131ef68a261:.github/workflows/dotnet-desktop.yml
 
     - name: Restore dependencies
       run: dotnet restore BookStore.sln
