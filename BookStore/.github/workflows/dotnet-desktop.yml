@@ -20,10 +20,10 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore BookStore.sln
+      run: dotnet restore ./BookStore.sln
 
     - name: Build
-      run: dotnet build BookStore.sln --configuration Release --no-restore
+      run: dotnet build ./BookStore.sln --configuration Release --no-restore
 
     - name: Format code
       run: dotnet format --verify-no-changes
