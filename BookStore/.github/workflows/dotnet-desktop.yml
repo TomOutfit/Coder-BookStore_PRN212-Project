@@ -1,4 +1,4 @@
-name: .NET Build & Test
+name: .NET CI/CD
 
 on:
   push:
@@ -9,24 +9,21 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
+    defaults:
+      run:
+        working-directory: BookStore
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Print working directory
-        run: pwd
-
-      - name: List files in workspace
-        run: ls -l
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
 
-      - name: Change directory to BookStore
-        run: cd BookStore
+      - name: List files in workspace
+        run: ls -l
+        working-directory: ${{ github.workspace }}/BookStore
 
       - name: Restore dependencies
         run: dotnet restore BookStore.sln
