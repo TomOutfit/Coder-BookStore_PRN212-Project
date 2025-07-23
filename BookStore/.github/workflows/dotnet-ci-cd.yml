@@ -21,10 +21,6 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      - name: List files in workspace
-        run: ls -l
-        working-directory: ${{ github.workspace }}/BookStore
-
       - name: Restore dependencies
         run: dotnet restore BookStore.sln
 
