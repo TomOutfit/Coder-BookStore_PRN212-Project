@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using PresentationLayer.Views;
 using System.Windows;
 using System;
+using System.Linq;
 
 namespace PresentationLayer.ViewModels
 {
@@ -71,8 +72,9 @@ namespace PresentationLayer.ViewModels
         }
         private async Task LoadOrders()
         {
-            var result = await _orderService.GetAllOrdersAsync(CurrentPage, PageSize, SearchText);
-            var total = await _orderService.CountOrdersAsync(SearchText);
+            // Lấy toàn bộ đơn hàng (theo trang)
+            var result = await _orderService.GetAllOrdersAsync(CurrentPage, PageSize, null); // Không truyền searchText
+            var total = await _orderService.CountOrdersAsync(null);
             Orders.Clear();
             var users = (await _userService.GetAllAsync()).ToList();
             foreach (var o in result)
@@ -87,7 +89,20 @@ namespace PresentationLayer.ViewModels
                     Status = o.Status
                 });
             }
-            TotalPages = (total + PageSize - 1) / PageSize;
+            // Lọc theo tên khách hàng nếu có search text
+            if (!string.IsNullOrWhiteSpace(SearchText))
+            {
+                var lower = SearchText.Trim().ToLower();
+                var filtered = Orders.Where(o => o.CustomerName.ToLower().Contains(lower)).ToList();
+                Orders.Clear();
+                foreach (var o in filtered) Orders.Add(o);
+                TotalPages = 1;
+                CurrentPage = 1;
+            }
+            else
+            {
+                TotalPages = (total + PageSize - 1) / PageSize;
+            }
             if (CurrentPage > TotalPages && TotalPages > 0)
             {
                 CurrentPage = TotalPages;

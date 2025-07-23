@@ -12,124 +12,105 @@
             <!-- Tab Admin -->
             <TabItem x:Name="AdminTab" Header="Admin"
                      Visibility="{Binding IsAdmin, Converter={StaticResource BookWiseBooleanToVisibilityConverter}}">
-                <StackPanel Height="387">
-                    <TextBlock Text="🛡️ Bảng điều khiển Quản trị viên"
+                <StackPanel>
+                    <TextBlock Text="🛡️ BẢNG ĐIỀU KHIỂN QUẢN TRỊ VIÊN"
                                Style="{StaticResource PageTitle}"
-                               Margin="0,0,0,24"/>
-                    <!-- Tab Admin: 1 hàng 4 card -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,32,0,0" >
-                        <Border CornerRadius="24" Margin="16" Padding="28" Background="#F8FAFC" Effect="{StaticResource CosmoShadow}">
+                               FontSize="32"
+                               FontWeight="Bold"
+                               Margin="0,0,0,32"
+                               HorizontalAlignment="Center"/>
+                    <UniformGrid Columns="4" Rows="1" Margin="0,0,0,32" HorizontalAlignment="Center">
+                        <Border CornerRadius="24" Margin="16" Padding="32" Background="#E0F7FA" Effect="{StaticResource CosmoShadow}">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Grid Width="64" Height="64" Margin="0,0,0,12">
-                                    <Ellipse Fill="#06B6D4" />
-                                    <TextBlock Text="📚" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
-                                </Grid>
-                                <TextBlock Text="Tổng số sách" Foreground="#06B6D4" FontSize="20" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding TotalBooks}" FontSize="40" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                <TextBlock Text="📚" FontSize="48" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Tổng số sách" Foreground="#06B6D4" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalBooks}" FontSize="36" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,8,0,0"/>
                             </StackPanel>
                         </Border>
-                        <Border CornerRadius="24" Margin="16" Padding="28" Background="#F8FAFC" Effect="{StaticResource CosmoShadow}">
+                        <Border CornerRadius="24" Margin="16" Padding="32" Background="#E0E7FF" Effect="{StaticResource CosmoShadow}">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Grid Width="64" Height="64" Margin="0,0,0,12">
-                                    <Ellipse Fill="#4F46E5" />
-                                    <TextBlock Text="🧾" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
-                                </Grid>
-                                <TextBlock Text="Tổng số đơn hàng" Foreground="#4F46E5" FontSize="20" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding TotalOrders}" FontSize="40" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                <TextBlock Text="🧾" FontSize="48" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Tổng số đơn hàng" Foreground="#4F46E5" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalOrders}" FontSize="36" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,8,0,0"/>
                             </StackPanel>
                         </Border>
-                        <Border CornerRadius="24" Margin="16" Padding="28" Background="#F8FAFC" Effect="{StaticResource CosmoShadow}">
+                        <Border CornerRadius="24" Margin="16" Padding="32" Background="#DCFCE7" Effect="{StaticResource CosmoShadow}">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Grid Width="64" Height="64" Margin="0,0,0,12">
-                                    <Ellipse Fill="#22C55E" />
-                                    <TextBlock Text="💰" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
-                                </Grid>
-                                <TextBlock Text="Tổng doanh thu" Foreground="#22C55E" FontSize="20" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
+                                <TextBlock Text="💰" FontSize="48" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Tổng doanh thu" Foreground="#22C55E" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
                                 <TextBlock>
-                                    <Run Text="{Binding TotalRevenue, StringFormat={}{0:N0}}" FontSize="40" FontWeight="Bold" Foreground="#222"/>
-                                    <Run Text=" đ" FontSize="32" FontWeight="Bold" Foreground="#222"/>
+                                    <Run Text="{Binding TotalRevenue, StringFormat={}{0:N0}}" FontSize="36" FontWeight="Bold" Foreground="#222"/>
+                                    <Run Text=" đ" FontSize="28" FontWeight="Bold" Foreground="#222"/>
                                 </TextBlock>
                             </StackPanel>
                         </Border>
-                        <Border CornerRadius="24" Margin="16" Padding="28" Background="#F8FAFC" Effect="{StaticResource CosmoShadow}">
+                        <Border CornerRadius="24" Margin="16" Padding="32" Background="#FFF7ED" Effect="{StaticResource CosmoShadow}">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Grid Width="64" Height="64" Margin="0,0,0,12">
-                                    <Ellipse Fill="#F59E42" />
-                                    <TextBlock Text="👤" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
-                                </Grid>
-                                <TextBlock Text="Tổng số người dùng" Foreground="#F59E42" FontSize="20" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding TotalUsers}" FontSize="40" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                <TextBlock Text="👤" FontSize="48" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Tổng số người dùng" Foreground="#F59E42" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalUsers}" FontSize="36" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,8,0,0"/>
                             </StackPanel>
                         </Border>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8">
-                        <Button Style="{StaticResource CosmoButton}" Content="Quản lý Sách" Command="{Binding GoToBooksCommand}" Margin="8,0"/>
-                        <Button Style="{StaticResource CosmoButton}" Content="Quản lý Đơn hàng" Command="{Binding GoToOrdersCommand}" Margin="8,0"/>
-                    </StackPanel>
+                    </UniformGrid>
                 </StackPanel>
             </TabItem>
             <!-- Tab Staff -->
             <TabItem x:Name="StaffTab" Header="Staff"
                      Visibility="{Binding IsAdminOrStaff, Converter={StaticResource BookWiseBooleanToVisibilityConverter}}">
                 <StackPanel>
-                    <TextBlock Text="🧑‍💼 Bảng điều khiển Nhân viên"
+                    <TextBlock Text="🧑‍💼 BẢNG ĐIỀU KHIỂN NHÂN VIÊN"
                                Style="{StaticResource PageTitle}"
-                               Margin="0,0,0,24"/>
-                    <!-- Tab Staff: 1 hàng 2 card -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,32,0,0" >
-                        <Border CornerRadius="24" Margin="16" Padding="28" Background="#F8FAFC" Effect="{StaticResource CosmoShadow}">
+                               FontSize="32"
+                               FontWeight="Bold"
+                               Margin="0,0,0,32"
+                               HorizontalAlignment="Center"/>
+                    <UniformGrid Columns="2" Rows="1" Margin="0,0,0,32" HorizontalAlignment="Center">
+                        <Border CornerRadius="24" Margin="16" Padding="32" Background="#E0F7FA" Effect="{StaticResource CosmoShadow}">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Grid Width="64" Height="64" Margin="0,0,0,12">
-                                    <Ellipse Fill="#06B6D4" />
-                                    <TextBlock Text="📚" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
-                                </Grid>
-                                <TextBlock Text="Sách quản lý" Foreground="#06B6D4" FontSize="20" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding TotalBooks}" FontSize="40" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                <TextBlock Text="📚" FontSize="48" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Sách quản lý" Foreground="#06B6D4" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalBooks}" FontSize="36" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,8,0,0"/>
                             </StackPanel>
                         </Border>
-                        <Border CornerRadius="24" Margin="16" Padding="28" Background="#F8FAFC" Effect="{StaticResource CosmoShadow}">
+                        <Border CornerRadius="24" Margin="16" Padding="32" Background="#E0E7FF" Effect="{StaticResource CosmoShadow}">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Grid Width="64" Height="64" Margin="0,0,0,12">
-                                    <Ellipse Fill="#4F46E5" />
-                                    <TextBlock Text="🧾" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
-                                </Grid>
-                                <TextBlock Text="Đơn hàng xử lý" Foreground="#4F46E5" FontSize="20" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding TotalOrders}" FontSize="40" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                <TextBlock Text="🧾" FontSize="48" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Đơn hàng xử lý" Foreground="#4F46E5" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalOrders}" FontSize="36" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,8,0,0"/>
                             </StackPanel>
                         </Border>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8">
-                        <Button Style="{StaticResource CosmoButton}" Content="Quản lý Sách" Command="{Binding GoToBooksCommand}" Margin="8,0"/>
-                        <Button Style="{StaticResource CosmoButton}" Content="Quản lý Đơn hàng" Command="{Binding GoToOrdersCommand}" Margin="8,0"/>
-                    </StackPanel>
+                    </UniformGrid>
                 </StackPanel>
             </TabItem>
             <!-- Tab Customer -->
             <TabItem x:Name="CustomerTab" Header="Customer"
                      Visibility="{Binding IsAdminOrStaff, Converter={StaticResource BookWiseBooleanToVisibilityConverter}, ConverterParameter=invert}">
                 <StackPanel>
-                    <TextBlock Text="🧑‍🎓 Bảng điều khiển Khách hàng"
+                    <TextBlock Text="🧑‍🎓 BẢNG ĐIỀU KHIỂN KHÁCH HÀNG"
                                Style="{StaticResource PageTitle}"
-                               Margin="0,0,0,24"/>
-                    <UniformGrid Columns="2" Rows="1" Margin="0,0,0,24" HorizontalAlignment="Center">
-                        <Border Background="{StaticResource CardBrush}" CornerRadius="12" Margin="12" Effect="{StaticResource CosmoShadow}">
-                            <StackPanel Margin="16">
-                                <TextBlock Text="🧾" FontSize="40" HorizontalAlignment="Center"/>
-                                <TextBlock Text="Đơn hàng của tôi" FontSize="16" Foreground="{StaticResource AccentBrush}" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding MyOrderCount}" FontSize="32" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}" HorizontalAlignment="Center"/>
+                               FontSize="32"
+                               FontWeight="Bold"
+                               Margin="0,0,0,32"
+                               HorizontalAlignment="Center"/>
+                    <UniformGrid Columns="2" Rows="1" Margin="0,0,0,32" HorizontalAlignment="Center">
+                        <Border Background="#E0E7FF" CornerRadius="16" Margin="16" Effect="{StaticResource CosmoShadow}">
+                            <StackPanel Margin="20">
+                                <TextBlock Text="🧾" FontSize="44" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Đơn hàng của tôi" FontSize="18" Foreground="#4F46E5" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding MyOrderCount}" FontSize="32" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Border>
-                        <Border Background="{StaticResource CardBrush}" CornerRadius="12" Margin="12" Effect="{StaticResource CosmoShadow}">
-                            <StackPanel Margin="16">
-                                <TextBlock Text="📚" FontSize="40" HorizontalAlignment="Center"/>
-                                <TextBlock Text="Sách đã mua" FontSize="16" Foreground="{StaticResource AccentBrush}" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding MyBookCount}" FontSize="32" FontWeight="Bold" Foreground="{StaticResource ForegroundBrush}" HorizontalAlignment="Center"/>
+                        <Border Background="#E0F7FA" CornerRadius="16" Margin="16" Effect="{StaticResource CosmoShadow}">
+                            <StackPanel Margin="20">
+                                <TextBlock Text="📚" FontSize="44" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Sách đã mua" FontSize="18" Foreground="#06B6D4" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding MyBookCount}" FontSize="32" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Border>
                     </UniformGrid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8">
-                        <Button Style="{StaticResource CosmoButton}" Content="Đơn hàng của tôi" Command="{Binding GoToMyOrdersCommand}" Margin="8,0"/>
-                        <Button Style="{StaticResource CosmoButton}" Content="Cập nhật thông tin" Command="{Binding GoToProfileCommand}" Margin="8,0"/>
+                        <Button Style="{StaticResource CosmoButton}" Content="Đơn hàng của tôi" Command="{Binding GoToMyOrdersCommand}" Margin="8,0" FontSize="16" Padding="18,6"/>
+                        <Button Style="{StaticResource CosmoButton}" Content="Cập nhật thông tin" Command="{Binding GoToProfileCommand}" Margin="8,0" FontSize="16" Padding="18,6"/>
                     </StackPanel>
                 </StackPanel>
             </TabItem>

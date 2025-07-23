@@ -109,7 +109,7 @@ VALUES
     ('staff1', 'pass_staff1', 'bob.staff@bookstore.com', 'Bob', 'Tran', '456 Maple Ave', 'Ho Chi Minh', 'Ho Chi Minh', '70000', '+84-934567890', 'Staff', 1),
     ('staff2', 'pass_staff2', 'carla.staff@bookstore.com', 'Carla', 'Le', '789 Oak Rd', 'Da Nang', 'Da Nang', '55000', '+84-945678901', 'Staff', 1),
     ('john.smith', 'pass_john', 'john.smith@gmail.com', 'John', 'Smith', '12 Baker St', 'London', 'England', 'E1 6AN', '+44-20-7946-0958', 'User', 1),
-    ('emma.jones', 'pass_emma', 'emma.jones@yahoo.com', 'Emma', 'Jones', '34 Queen St', 'Auckland', 'Auckland', '1010', '+64-9-123-4567', 'User', 1),
+    ('emma.jones', '{F4F3C770-651B-4CE8-9D89-DF1BDB928B65}.png', 'emma.jones@yahoo.com', 'Emma', 'Jones', '34 Queen St', 'Auckland', 'Auckland', '1010', '+64-9-123-4567', 'User', 1),
     ('li.wei', 'pass_li', 'li.wei@163.com', 'Li', 'Wei', '56 Nanjing Rd', 'Shanghai', 'Shanghai', '200000', '+86-21-1234-5678', 'User', 1),
     ('maria.garcia', 'pass_maria', 'maria.garcia@outlook.com', 'Maria', 'Garcia', '78 Gran Via', 'Madrid', 'Madrid', '28013', '+34-91-123-4567', 'User', 1),
     ('peter.mueller', 'pass_peter', 'peter.mueller@mail.de', 'Peter', 'Mueller', '90 Hauptstrasse', 'Berlin', 'Berlin', '10115', '+49-30-123456', 'User', 1),

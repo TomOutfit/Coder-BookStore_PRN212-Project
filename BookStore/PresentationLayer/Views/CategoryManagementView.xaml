@@ -5,116 +5,123 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="600" d:DesignWidth="1000">
-    <Border Effect="{StaticResource CosmoShadow}" Background="{StaticResource CardBrush}" CornerRadius="14" Padding="24" Margin="24">
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,20" VerticalAlignment="Center">
-                <TextBlock Text="🏷️" FontSize="32" Margin="0,0,10,0"/>
-                <TextBlock Text="Quản lý Thể loại"
-                           Style="{StaticResource PageTitle}">
-                    <TextBlock.Foreground>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                            <GradientStop Color="#06B6D4" Offset="0"/>
-                            <GradientStop Color="#4F46E5" Offset="1"/>
-                        </LinearGradientBrush>
-                    </TextBlock.Foreground>
-                </TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,12">
-                <Button Style="{StaticResource CosmoButton}"
-                        Background="{StaticResource AccentBrush}"
-                        Foreground="White"
-                        Command="{Binding AddCategoryCommand}"
-                        Margin="0,0,10,0" Padding="14,0">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="➕" FontSize="18" Margin="0,0,6,0"/>
-                        <TextBlock Text="Thêm thể loại" FontSize="15"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource CosmoButton}"
-                        Background="{StaticResource ForegroundBrush}"
-                        Foreground="White"
-                        Command="{Binding RefreshCommand}" Padding="14,0">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="🔄" FontSize="18" Margin="0,0,6,0"/>
-                        <TextBlock Text="Làm mới" FontSize="15"/>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12" VerticalAlignment="Center">
-                <TextBlock Text="Số chủ đề/trang:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="14"/>
-                <ComboBox Style="{StaticResource ModernComboBox}" Width="60" ItemsSource="{Binding PageSizeOptions}" SelectedItem="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,16,0"/>
-                <Button Style="{StaticResource CosmoButton}" Content="⏮" Command="{Binding FirstPageCommand}" IsEnabled="{Binding CanGoPrevious}" Margin="0,0,4,0"/>
-                <Button Style="{StaticResource CosmoButton}" Content="&lt;" Command="{Binding PrevPageCommand}" IsEnabled="{Binding CanGoPrevious}" Margin="0,0,8,0"/>
-                <TextBlock Text="{Binding CurrentPage}" FontWeight="Bold" VerticalAlignment="Center" FontSize="15"/>
-                <TextBlock Text=" / " VerticalAlignment="Center" FontSize="15"/>
-                <TextBlock Text="{Binding TotalPages}" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="15"/>
-                <Button Style="{StaticResource CosmoButton}" Content=">" Command="{Binding NextPageCommand}" IsEnabled="{Binding CanGoNext}" Margin="0,0,4,0"/>
-                <Button Style="{StaticResource CosmoButton}" Content="⏭" Command="{Binding LastPageCommand}" IsEnabled="{Binding CanGoNext}" Margin="0,0,16,0"/>
-                <TextBlock Text="Đến trang:" VerticalAlignment="Center" Margin="0,0,4,0" FontSize="14"/>
-                <TextBox Width="40" Text="{Binding GoToPageText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,4,0" FontSize="14"/>
-                <Button Style="{StaticResource CosmoButton}" Content="Đi" Command="{Binding GoToPageCommand}" FontSize="14"/>
-            </StackPanel>
-            <DataGrid Style="{StaticResource ModernDataGrid}"
-                      ItemsSource="{Binding Categories}"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      Margin="0,0,0,20"
-                      AlternationCount="2"
-                      RowHeight="38"
-                      ColumnHeaderHeight="38">
-                <DataGrid.Resources>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="Background" Value="White"/>
-                        <Setter Property="FontSize" Value="15"/>
-                        <Setter Property="Padding" Value="6,0,6,0"/>
-                        <Style.Triggers>
-                            <Trigger Property="AlternationIndex" Value="1">
-                                <Setter Property="Background" Value="#F0F7FF"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#E0F2FE"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#4F46E5"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="FontSize" Value="16"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="Height" Value="38"/>
-                    </Style>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Tên chủ đề" Binding="{Binding Name}" Width="*"/>
-                    <DataGridTextColumn Header="Mô tả" Binding="{Binding Description}" Width="2*"/>
-                    <DataGridTemplateColumn Header="Hành động" Width="160">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Style="{StaticResource TableActionButton}"
-                                            Background="{StaticResource AccentBrush}"
-                                            Foreground="White"
-                                            ToolTip="Sửa"
-                                            Command="{Binding DataContext.EditCategoryCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                            CommandParameter="{Binding}"
-                                            Margin="0,0,10,0">
-                                        <TextBlock Text="✏ Sửa" FontSize="15"/>
-                                    </Button>
-                                    <Button Style="{StaticResource TableActionButton}"
-                                            Background="{StaticResource DangerBrush}"
-                                            Foreground="White"
-                                            ToolTip="Xóa"
-                                            Command="{Binding DataContext.DeleteCategoryCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                            CommandParameter="{Binding}">
-                                        <TextBlock Text="🗑 Xóa" FontSize="15"/>
-                                    </Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+    <StackPanel Margin="24">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,20" VerticalAlignment="Center">
+            <TextBlock Text="🏷️" FontSize="32" Margin="0,0,10,0"/>
+            <TextBlock Text="Quản lý Thể loại"
+                       Style="{StaticResource PageTitle}">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#06B6D4" Offset="0"/>
+                        <GradientStop Color="#4F46E5" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
         </StackPanel>
-    </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,12">
+            <Button Style="{StaticResource CosmoButton}"
+                    Background="{StaticResource AccentBrush}"
+                    Foreground="White"
+                    Command="{Binding AddCategoryCommand}"
+                    Margin="0,0,10,0" Padding="14,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="➕" FontSize="18" Margin="0,0,6,0"/>
+                    <TextBlock Text="Thêm thể loại" FontSize="15"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource CosmoButton}"
+                    Background="{StaticResource ForegroundBrush}"
+                    Foreground="White"
+                    Command="{Binding RefreshCommand}" Padding="14,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="🔄" FontSize="18" Margin="0,0,6,0"/>
+                    <TextBlock Text="Làm mới" FontSize="15"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <!-- Search Bar -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,16" VerticalAlignment="Center">
+            <TextBox Width="260" Height="32" Margin="0,0,8,0" FontSize="15" Style="{StaticResource ModernTextBox}"
+                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Style="{StaticResource CosmoButton}" Height="32" Width="40" Command="{Binding SearchCommand}">
+                <TextBlock Text="🔍" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+        <!-- Paging and DataGrid below -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12" VerticalAlignment="Center">
+            <TextBlock Text="Số chủ đề/trang:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="14"/>
+            <ComboBox Style="{StaticResource ModernComboBox}" Width="60" ItemsSource="{Binding PageSizeOptions}" SelectedItem="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,16,0"/>
+            <Button Style="{StaticResource CosmoButton}" Content="⏮" Command="{Binding FirstPageCommand}" IsEnabled="{Binding CanGoPrevious}" Margin="0,0,4,0"/>
+            <Button Style="{StaticResource CosmoButton}" Content="&lt;" Command="{Binding PrevPageCommand}" IsEnabled="{Binding CanGoPrevious}" Margin="0,0,8,0"/>
+            <TextBlock Text="{Binding CurrentPage}" FontWeight="Bold" VerticalAlignment="Center" FontSize="15"/>
+            <TextBlock Text=" / " VerticalAlignment="Center" FontSize="15"/>
+            <TextBlock Text="{Binding TotalPages}" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="15"/>
+            <Button Style="{StaticResource CosmoButton}" Content=">" Command="{Binding NextPageCommand}" IsEnabled="{Binding CanGoNext}" Margin="0,0,4,0"/>
+            <Button Style="{StaticResource CosmoButton}" Content="⏭" Command="{Binding LastPageCommand}" IsEnabled="{Binding CanGoNext}" Margin="0,0,16,0"/>
+            <TextBlock Text="Đến trang:" VerticalAlignment="Center" Margin="0,0,4,0" FontSize="14"/>
+            <TextBox Width="40" Text="{Binding GoToPageText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,4,0" FontSize="14"/>
+            <Button Style="{StaticResource CosmoButton}" Content="Đi" Command="{Binding GoToPageCommand}" FontSize="14"/>
+        </StackPanel>
+        <DataGrid Style="{StaticResource ModernDataGrid}"
+                  ItemsSource="{Binding Categories}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  Margin="0,0,0,20"
+                  AlternationCount="2"
+                  RowHeight="38"
+                  ColumnHeaderHeight="38">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="FontSize" Value="15"/>
+                    <Setter Property="Padding" Value="6,0,6,0"/>
+                    <Style.Triggers>
+                        <Trigger Property="AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="#F0F7FF"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#E0F2FE"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#4F46E5"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Height" Value="38"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tên chủ đề" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Mô tả" Binding="{Binding Description}" Width="2*"/>
+                <DataGridTemplateColumn Header="Hành động" Width="160">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Style="{StaticResource TableActionButton}"
+                                        Background="{StaticResource AccentBrush}"
+                                        Foreground="White"
+                                        ToolTip="Sửa"
+                                        Command="{Binding DataContext.EditCategoryCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding}"
+                                        Margin="0,0,10,0">
+                                    <TextBlock Text="✏ Sửa" FontSize="15"/>
+                                </Button>
+                                <Button Style="{StaticResource TableActionButton}"
+                                        Background="{StaticResource DangerBrush}"
+                                        Foreground="White"
+                                        ToolTip="Xóa"
+                                        Command="{Binding DataContext.DeleteCategoryCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding}">
+                                    <TextBlock Text="🗑 Xóa" FontSize="15"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </UserControl> 
