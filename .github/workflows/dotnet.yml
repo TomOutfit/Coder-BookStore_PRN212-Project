@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: windows-latest
     steps:
       - name: Checkout code
@@ -25,10 +25,4 @@ jobs:
         run: dotnet build BookStore/BookStore.sln --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test BookStore/BookStore.sln --no-build --verbosity normal
-
-      - name: Run (PresentationLayer)
-        run: dotnet run --project BookStore/PresentationLayer/PresentationLayer.csproj
-        env:
-          ASPNETCORE_ENVIRONMENT: Development
-        continue-on-error: true # Không fail job nếu run UI không thành công trên CI 
+        run: dotnet test BookStore/BookStore.sln --no-build --verbosity normal 
