@@ -26,13 +26,13 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore ./BookStore.sln
+        run: dotnet restore BookStore/BookStore.sln
 
       - name: Format code
         run: dotnet format --verify-no-changes
 
       - name: Build
-        run: dotnet build ./BookStore.sln --configuration Release --no-restore
+        run: dotnet build BookStore/BookStore.sln --configuration Release --no-restore
 
       - name: Test
         run: dotnet test BusinessLayer.Tests/BusinessLayer.Tests.csproj --no-build --verbosity normal --logger "trx;LogFileName=test_results.trx"
